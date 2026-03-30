@@ -5,24 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kweider Damascene Sweets Menu</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background-color: #121212; 
-            color: #ffffff; 
-            margin: 0; 
-            padding: 0; 
-            scroll-behavior: smooth; 
-        }
-        
-        header { 
-            background-color: #000000; 
-            text-align: center; 
-            padding: 20px 10px; 
-            border-bottom: 3px solid #D4AF37; 
-        }
-        
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding: 0; scroll-behavior: smooth; }
+        header { background-color: #000000; text-align: center; padding: 20px 10px; border-bottom: 3px solid #D4AF37; }
         .logo { max-width: 180px; height: auto; margin-bottom: 10px; }
-        
         .welcome-msg { color: #fff; font-size: 14px; margin-bottom: 5px; }
         .welcome-en { color: #D4AF37; font-size: 13px; font-style: italic; direction: ltr; display: block; }
 
@@ -33,63 +18,73 @@
             z-index: 1000;
             display: flex;
             overflow-x: auto;
-            padding: 10px 5px;
+            padding: 15px 5px;
             border-bottom: 1px solid #D4AF37;
-            gap: 8px;
+            gap: 10px;
         }
         
-        /* إخفاء شريط التمرير (Scrollbar) من شريط التصنيفات لجمالية التصميم */
-        .categories-bar::-webkit-scrollbar { display: none; }
-        .categories-bar { -ms-overflow-style: none; scrollbar-width: none; }
-
         .cat-btn {
             color: #D4AF37;
             background: none;
             border: 1px solid #D4AF37;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
             cursor: pointer;
             white-space: nowrap;
-            font-size: 13px;
+            font-size: 14px;
             transition: 0.3s;
+            font-weight: bold;
         }
 
-        .cat-btn.active { background-color: #D4AF37; color: #000000; font-weight: bold; }
-
-        .container { max-width: 600px; margin: auto; padding: 15px; min-height: 500px; }
+        .cat-btn.active { background-color: #D4AF37; color: #000000; }
+        .container { max-width: 800px; margin: auto; padding: 20px; min-height: 500px; }
+        .menu-section { display: none; margin-bottom: 40px; }
         
-        /* القسم بالكامل يبدأ مخفياً إلا إذا كان يحتوي على الكلاس active */
-        .menu-section { display: none; animation: fadeIn 0.5s; }
-        .menu-section.active { display: block; }
+        .section-title { color: #D4AF37; border-right: 5px solid #D4AF37; padding-right: 15px; margin: 30px 0 20px 0; font-size: 24px; }
+        
+        .item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .item-card { background: #1e1e1e; border-radius: 20px; overflow: hidden; border: 1px solid #333; box-shadow: 0 6px 15px rgba(0,0,0,0.4); transition: transform 0.3s; position: relative; }
+        
+        .item-image { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid #D4AF37; }
+        .item-details { padding: 15px; text-align: center; }
+        
+        /* التنسيقات المحدثة لفصل اللغات بشكل مثالي */
+        .item-name-ar { font-weight: bold; font-size: 18px; color: #ffffff; margin-bottom: 3px; direction: rtl; text-align: center; }
+        .item-name-en { font-weight: bold; font-size: 14px; color: #D4AF37; margin-bottom: 8px; direction: ltr; text-align: center; }
+        .item-desc-ar { color: #dddddd; font-size: 13px; margin: 5px 0; line-height: 1.5; direction: rtl; text-align: center; }
+        .item-desc-en { color: #999999; font-size: 12px; margin: 5px 0 10px 0; line-height: 1.4; direction: ltr; text-align: center; font-style: italic; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .item-price { position: absolute; top: 15px; left: 15px; background-color: rgba(212, 175, 55, 0.95); color: #000000; font-weight: bold; font-size: 18px; padding: 8px 12px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        
+        /* زر وصندوق الحساسية */
+        .allergy-btn { background-color: #ffc107; color: #000000; border: none; padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; width: 100%; margin-top: 10px; transition: 0.3s; }
+        .allergy-btn:hover { background-color: #e0a800; }
+        .allergy-content { display: none; background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 10px; border-radius: 8px; margin-top: 8px; font-size: 11px; color: #dddddd; text-align: center; line-height: 1.6; }
 
-        .section-title { 
-            color: #D4AF37; 
-            border-right: 5px solid #D4AF37; 
-            padding-right: 10px; 
-            margin: 25px 0 15px 0; 
-            font-size: 20px; 
+        @media (max-width: 600px) {
+            .item-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .item-image { height: 140px; }
+            .item-name-ar { font-size: 14px; }
+            .item-name-en { font-size: 11px; }
+            .item-price { font-size: 14px; padding: 5px 8px; top: 10px; left: 10px; }
+            .item-desc-ar, .item-desc-en { font-size: 11px; }
+            .container { padding: 10px; }
         }
-        
-        .item-card { 
-            background: #1e1e1e; 
-            margin-bottom: 15px; 
-            border-radius: 15px; 
-            display: flex; 
-            overflow: hidden; 
-            border: 1px solid #333; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
-        }
-        
-        .item-image { width: 110px; height: 110px; object-fit: cover; }
-        .item-details { padding: 12px; flex-grow: 1; position: relative; }
-        
-        .item-name { font-weight: bold; font-size: 16px; color: #ffffff; margin-bottom: 5px; direction: ltr; text-align: left;}
-        .item-price { font-weight: bold; color: #1a1a1a; font-size: 17px; float: left; background: #D4AF37; padding: 2px 8px; border-radius: 5px; margin-left: 10px;}
-        .item-desc { color: #bbb; font-size: 12px; margin: 8px 0; line-height: 1.4; }
-        
-        .allergy-info { color: #ffc107; font-size: 10px; font-weight: bold; background: rgba(255, 193, 7, 0.1); padding: 3px 8px; border-radius: 5px; display: inline-block; border: 1px solid rgba(255, 193, 7, 0.3); }
+
+        /* الفوتر وزر العودة */
+        footer { background-color: #0b0b0b; text-align: center; padding: 40px 20px; margin-top: 50px; border-top: 2px solid #D4AF37; }
+        .footer-logo { max-width: 120px; margin-bottom: 15px; }
+        .footer-title { color: #D4AF37; font-size: 18px; margin-bottom: 10px; font-weight: bold; }
+        .footer-text { font-size: 13px; margin-bottom: 8px; line-height: 1.6; color: #ccc; }
+        .footer-links { margin: 20px 0; }
+        .footer-links a { color: #000; background-color: #D4AF37; padding: 8px 15px; text-decoration: none; border-radius: 20px; font-size: 13px; font-weight: bold; margin: 5px; display: inline-block; transition: 0.3s; }
+        .management-contact { background: #1a1a1a; border: 1px dashed #D4AF37; padding: 20px; border-radius: 15px; margin: 25px auto 10px; max-width: 400px; }
+        .management-contact p { margin: 0 0 15px 0; font-size: 13px; color: #fff; }
+        .whatsapp-btn { background-color: #25D366; color: white; text-decoration: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+        .header-contact-btn { display: inline-block; margin-top: 15px; padding: 8px 20px; background-color: transparent; color: #D4AF37; border: 1px solid #D4AF37; border-radius: 25px; text-decoration: none; font-size: 12px; font-weight: bold; transition: 0.3s; }
+        .header-contact-btn:hover { background-color: #D4AF37; color: #000; }
+        #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 999; font-size: 20px; border: none; outline: none; background-color: #D4AF37; color: #000; cursor: pointer; width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: background-color 0.3s, transform 0.3s; }
+        #backToTop:hover { background-color: #fff; transform: scale(1.1); }
     </style>
 </head>
 <body>
@@ -98,10 +93,15 @@
     <img src="logo.png" alt="Kweider Logo" class="logo" onerror="this.src='https://via.placeholder.com/150/000000/D4AF37?text=KWEIDER'">
     <div class="welcome-msg">تصفح المنيو ونادِ الموظف لخدمتك</div>
     <span class="welcome-en">Welcome! Please browse and call staff to order.</span>
+    <br>
+    <a href="https://wa.me/447440444500" class="header-contact-btn" target="_blank">
+        🌟 رضائكم غايتنا.. تواصل مع الإدارة | Contact Management
+    </a>
 </header>
 
 <nav class="categories-bar">
     <button class="cat-btn active" onclick="filterMenu('all', this)">All</button>
+    <button class="cat-btn" onclick="filterMenu('breakfast', this)">فطور Breakfast</button>
     <button class="cat-btn" onclick="filterMenu('kunafa', this)">Kunafa</button>
     <button class="cat-btn" onclick="filterMenu('cream', this)">Sweets with Cream</button>
     <button class="cat-btn" onclick="filterMenu('milkcake', this)">Milk Cake</button>
@@ -114,139 +114,310 @@
 
 <div class="container" id="main-menu">
     
-    <div class="menu-section active" data-category="kunafa">
-        <h2 class="section-title">🥧 كنافة Premium Kunafa</h2>
-        
-        <div class="item-card">
-            <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/110/333/D4AF37?text=Kunafa'">
-            <div class="item-details">
+    <div id="breakfast" class="menu-section">
+        <h2 class="section-title">🍳 فطور Breakfast</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£9.00</span>
+                <img src="fatteh.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Breakfast'">
+                <div class="item-details">
+                    <div class="item-name-ar">فطور شامي أصيل</div>
+                    <div class="item-name-en">Authentic Damascene Breakfast</div>
+                    <div class="item-desc-ar">تشكيلة من الأجبان، الزيتون، والمربيات مع الخبز الطازج.</div>
+                    <div class="item-desc-en">Assortment of cheeses, olives, and jams with fresh bread.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Gluten.</span><br>
+                        <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="kunafa" class="menu-section">
+        <h2 class="section-title">🥧 كنافة Kunafa</h2>
+        <div class="item-grid">
+            <div class="item-card">
                 <span class="item-price">£7.50</span>
-                <div class="item-name">Premium Cheese Kunafa</div>
-                <div class="item-desc">
-                    <div style="direction: rtl; text-align: right; margin-bottom: 8px;">
-                        "حلوى شرقية فاخرة تُحضر من خيوط العجين الذهبية والمقرمشة، محشوة بطبقة غنية من الجبن الذائب، وتُسقى بقطر السكر لتُقدم دافئة بمذاق يذوب في الفم."
+                <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kunafa'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة بالجبن</div>
+                    <div class="item-name-en">Cheese Kunafa</div>
+                    <div class="item-desc-ar">كنافة نابلسية ساخنة محشوة بالجبنة الغنية.</div>
+                    <div class="item-desc-en">Served hot with rich cheese filling.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish).</span>
                     </div>
-                    <div style="direction: ltr; text-align: left; margin-top: 8px;">
-                        "A luxurious oriental dessert crafted from crispy, golden pastry threads, generously filled with a layer of rich, melting cheese, and lightly sweetened with syrup. Served warm for a melt-in-your-mouth experience."
-                    </div>
-                </div>
-                <div class="allergy-info" style="direction: ltr; text-align: left; margin-top: 10px;">
-                    ⚠️ <strong>Allergy Advice:</strong> Contains <strong>Wheat (Gluten)</strong> and <strong>Milk</strong>. (May contain traces of nuts)
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="menu-section active" data-category="cream">
-        <h2 class="section-title">☁️ حلويات بالقشطة Sweets with Cream</h2>
-        
-        <div class="item-card">
-            <img src="cream.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/110/333/D4AF37?text=Cream'">
-            <div class="item-details">
-                <span class="item-price">£6.50</span>
-                <div class="item-name">Premium Cream Halawat Al-Jibn</div>
-                <div class="item-desc">
-                    <div style="direction: rtl; text-align: right; margin-bottom: 8px;">رقائق الجبن المحشوة بالقشطة الطازجة.</div>
-                    <div style="direction: ltr; text-align: left; margin-top: 8px;">Cheese rolls stuffed with fresh cream.</div>
-                </div>
-                <div class="allergy-info" style="direction: ltr; text-align: left;">
-                    ⚠️ <strong>Allergy Advice:</strong> Contains <strong>Milk</strong>.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="menu-section active" data-category="baklava">
-        <h2 class="section-title">🍯 بقلاوة Premium Baklava</h2>
-        
-        <div class="item-card">
-            <img src="pistachio_baklava.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/110/333/D4AF37?text=Baklava'">
-            <div class="item-details">
-                <span class="item-price">£15.00</span>
-                <div class="item-name">Premium Pistachio Baklava</div>
-                <div class="item-desc">
-                    <div style="direction: rtl; text-align: right; margin-bottom: 8px;">طبقات مقرمشة من العجين المحشو بالفستق الحلبي الفاخر.</div>
-                    <div style="direction: ltr; text-align: left; margin-top: 8px;">Crispy layers of pastry generously filled with premium pistachios.</div>
-                </div>
-                <div class="allergy-info" style="direction: ltr; text-align: left;">
-                    ⚠️ <strong>Allergy Advice:</strong> Contains <strong>Wheat (Gluten)</strong> and <strong>Pistachio (Nuts)</strong>.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="menu-section active" data-category="milkcake">
-        <h2 class="section-title">🍰 كيكة الحليب Milk Cake</h2>
 <div class="item-card">
-    
-    <img src="image_name.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/110/333/D4AF37?text=Image'">
-    
+    <span class="item-price">£7.5.00</span>
+    <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
     <div class="item-details">
-        <span class="item-price">£7.00</span>
-        
-        <div class="item-name">Premium [Ingredient] [Product Name]</div>
-        
-        <div class="item-desc">
-            
-            <div style="direction: rtl; text-align: right; margin-bottom: 8px;">
-                [اكتب الوصف الجذاب باللغة العربية هنا]
-            </div>
-            
-            <div style="direction: ltr; text-align: left; margin-top: 8px;">
-                [اكتب الوصف باللغة الإنجليزية هنا]
-            </div>
-            
+        <div class="item-name-ar">كنافة خشنة بالجبن الفاخر</div>
+        <div class="item-name-en">Premium Cheese Coarse Kunafa</div>
+        <div class="item-desc-ar">خيوط الكنافة الخشنة والمقرمشة، محشوة بطبقة غنية من الجبن الفاخر الذائب. تُحلى بالقطر لتقدم توازناً مثالياً بين القرمشة والمذاق الغني..</div>
+        <div class="item-desc-en">Crispy, golden coarse pastry threads filled with a rich layer of premium melting cheese. Sweetened with syrup for the perfect balance of crunch and rich flavor.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: الجلوتين (القمح)، الحليب، المكسرات.<br>
+            <span style="color:#ffc107;">Contains: Gluten (Wheat), Milk, Tree Nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
         </div>
-        
-        <div class="allergy-info" style="direction: ltr; text-align: left; margin-top: 10px;">
-            ⚠️ <strong>Allergy Advice:</strong> Contains <strong>[Allergen 1]</strong> and <strong>[Allergen 2]</strong>.
-        </div>
-        
     </div>
 </div>
         </div>
+    </div>
 
-    <div class="menu-section active" data-category="icecream">
-        <h2 class="section-title">🍦 آيس كريم Ice Cream</h2>
+    <div id="cream" class="menu-section">
+        <h2 class="section-title">☁️ أنواع القشطة Sweets with Cream</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£6.50</span>
+                <img src="cream.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Cream'">
+                <div class="item-details">
+                    <div class="item-name-ar">حلاوة الجبن</div>
+                    <div class="item-name-en">Halawat Al-Jibn</div>
+                    <div class="item-desc-ar">لفائف الجبن المحشوة بالقشطة البلدية الطازجة.</div>
+                    <div class="item-desc-en">Cheese rolls stuffed with fresh cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، ومكسرات.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Nuts.</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-    <div class="menu-section active" data-category="cold">
-        <h2 class="section-title">🥤 مشروبات باردة Cold Drinks</h2>
+    <div id="milkcake" class="menu-section">
+        <h2 class="section-title">🍰 ملك كيك Milk Cake</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£6.00</span>
+                <img src="milkcake.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=MilkCake'">
+                <div class="item-details">
+                    <div class="item-name-ar">كيكة الزعفران</div>
+                    <div class="item-name-en">Saffron Milk Cake</div>
+                    <div class="item-desc-ar">كيكة الحليب بنكهة الزعفران الفاخرة.</div>
+                    <div class="item-desc-en">Rich sponge cake with saffron milk.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، بيض، غلوتين.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Eggs, Gluten.</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-    <div class="menu-section active" data-category="hot">
-        <h2 class="section-title">☕ مشروبات ساخنة Hot Drinks</h2>
+    <div id="baklava" class="menu-section">
+        <h2 class="section-title">🍪 بقلاوة Baklava</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£10.00</span>
+                <img src="baklava.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Baklava'">
+                <div class="item-details">
+                    <div class="item-name-ar">بقلاوة مشكلة</div>
+                    <div class="item-name-en">Mixed Baklava</div>
+                    <div class="item-desc-ar">تشكيلة فاخرة من الفستق الحلبي والجوز.</div>
+                    <div class="item-desc-en">Assortment of pistachio and walnut baklava.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: مكسرات، غلوتين، سمن حيواني.<br>
+                        <span style="color:#ffc107;">Contains: Nuts, Gluten, Clarified Butter.</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-    <div class="menu-section active" data-category="fruit">
-        <h2 class="section-title">🍓 سلطة فواكه Fruit Salad</h2>
+    <div id="icecream" class="menu-section">
+        <h2 class="section-title">🍦 بوظة Ice Cream</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£5.50</span>
+                <img src="icecream.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=IceCream'">
+                <div class="item-details">
+                    <div class="item-name-ar">بوظة عربي</div>
+                    <div class="item-name-en">Arabic Ice Cream</div>
+                    <div class="item-desc-ar">بوظة يدوية أصلية مغطاة بالفستق.</div>
+                    <div class="item-desc-en">Hand-pounded ice cream coated with pistachio.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، مكسرات.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Nuts.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="item-card">
+                <span class="item-price">£8.50</span>
+                <img src="crepe.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Crepe'">
+                <div class="item-details">
+                    <div class="item-name-ar">كريب بوظة</div>
+                    <div class="item-name-en">Ice Cream Crepe Pouch</div>
+                    <div class="item-desc-ar">كريب محشو بنوعين من البوظة الإيطالية ومغطى بشوكولاتة نوتيلا الغنية.</div>
+                    <div class="item-desc-en">Crepe stuffed with two types of Italian ice cream covered with nutella chocolate.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، مكسرات (فستق)، غلوتين، وصويا.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Nuts, Gluten, Soya.</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
+    <div id="cold" class="menu-section">
+        <h2 class="section-title">🍹 شراب بارد Cold Drinks</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£4.50</span>
+                <img src="cold.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Cold'">
+                <div class="item-details">
+                    <div class="item-name-ar">ليمون بالنعناع</div>
+                    <div class="item-name-en">Mint Lemonade</div>
+                    <div class="item-desc-ar">عصير منعش طبيعي 100%.</div>
+                    <div class="item-desc-en">Freshly squeezed lemon with fresh mint.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:#ffc107;">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hot" class="menu-section">
+        <h2 class="section-title">☕ شراب ساخن Hot Drinks</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="hot.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Hot'">
+                <div class="item-details">
+                    <div class="item-name-ar">شاي فاخر</div>
+                    <div class="item-name-en">Premium Tea</div>
+                    <div class="item-desc-ar">شاي محضر على الطريقة التقليدية.</div>
+                    <div class="item-desc-en">Traditional aromatic tea.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:#ffc107;">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fruit" class="menu-section">
+        <h2 class="section-title">🍉 سلطة فواكه Fruit Salad</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£7.00</span>
+                <img src="fruit.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Fruit'">
+                <div class="item-details">
+                    <div class="item-name-ar">سلطة فواكه موسمية</div>
+                    <div class="item-name-en">Seasonal Fruit Salad</div>
+                    <div class="item-desc-ar">فواكه طازجة مع الكريمة والعسل.</div>
+                    <div class="item-desc-en">Fresh fruits with cream and honey.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (في الكريمة).<br>
+                        <span style="color:#ffc107;">Contains: Milk (in cream).</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> 
+
+<footer>
+    <img src="logo.png" alt="Kweider Logo" class="footer-logo" onerror="this.src='https://via.placeholder.com/120/000000/D4AF37?text=KWEIDER'">
+    <div class="footer-title">Kweider Damascene Sweets</div>
+    <div class="footer-text">📍 London, United Kingdom<br>Authentic Damascene Taste Since 1969</div>
+    <div class="footer-text">🕒 Opening Hours: 11:00 AM - 10:00 PM</div>
+    
+  <div class="footer-links">
+  <a href="https://g.page/r/CflK53yJZHCoEBM/review" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>
+  <a href="https://www.instagram.com/kweideruk" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+  <a href="https://www.facebook.com/KweiderUK" target="_blank" rel="noopener noreferrer">🔵 Facebook</a>
+  <a href="https://www.tiktok.com/@kweideruk" target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
 </div>
+
+    <div class="management-contact">
+        <div class="footer-title" style="font-size: 16px; margin-bottom: 8px;">🌟 رأيك يهمنا جداً</div>
+        <p>Your feedback matters! هل لديك أي ملاحظة أو اقتراح قبل مغادرة المحل؟ تواصل مع الإدارة مباشرة.</p>
+        <a href="https://wa.me/447440444500" class="whatsapp-btn" target="_blank">💬 تواصل مع الإدارة (WhatsApp)</a>
+    </div>
+    
+    <div class="footer-text" style="margin-top: 30px; font-size: 11px; color: #555;">
+        © 2026 Kweider Sweets. All rights reserved.
+    </div>
+</footer>
+
+<button id="backToTop" onclick="scrollToTop()" title="العودة للأعلى">⬆️</button>
 
 <script>
+    window.onload = function() {
+        filterMenu('all', document.querySelector('.cat-btn'));
+    };
+
     function filterMenu(category, btn) {
-        // 1. تحديد جميع الأقسام وأزرار التصنيفات
         const sections = document.querySelectorAll('.menu-section');
         const buttons = document.querySelectorAll('.cat-btn');
-        
-        // 2. إزالة التفعيل من جميع الأزرار وإضافته للزر المضغوط فقط
         buttons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        
-        // 3. فلترة الأقسام بالكامل (العنوان + المنتجات)
         sections.forEach(section => {
-            const sectionCategory = section.getAttribute('data-category');
-            
-            if (category === 'all' || sectionCategory === category) {
-                section.classList.add('active');
+            if (category === 'all') {
+                section.style.display = 'block'; 
+            } else if (section.id === category) {
+                section.style.display = 'block'; 
             } else {
-                section.classList.remove('active');
+                section.style.display = 'none';  
             }
         });
-        
-        // 4. العودة لأعلى المنيو بسلاسة
         window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    let topButton = document.getElementById("backToTop");
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    };
+
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    function toggleAllergy(btn) {
+        const content = btn.nextElementSibling; 
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            btn.innerHTML = "⚠️ إذا كنت تعاني من حساسية اضغط هنا";
+        } else {
+            content.style.display = "block";
+            btn.innerHTML = "❌ إغلاق معلومات الحساسية";
+        }
     }
 </script>
 
