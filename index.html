@@ -61,14 +61,22 @@
         .allergy-btn:hover { background-color: #e0a800; }
         .allergy-content { display: none; background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 10px; border-radius: 8px; margin-top: 8px; font-size: 11px; color: #dddddd; text-align: center; line-height: 1.6; }
 
+        /* --------------------------------------------------- */
+        /* منطقة العملية الجراحية: تعديلات الهاتف المحمول */
+        /* --------------------------------------------------- */
         @media (max-width: 600px) {
-            .item-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .item-image { height: 140px; }
-            .item-name-ar { font-size: 14px; }
-            .item-name-en { font-size: 11px; }
-            .item-price { font-size: 14px; padding: 5px 8px; top: 10px; left: 10px; }
-            .item-desc-ar, .item-desc-en { font-size: 11px; }
-            .container { padding: 10px; }
+            /* تعديل: جعل المنتجات تظهر تحت بعضها بعمود واحد (1fr) */
+            .item-grid { grid-template-columns: 1fr; gap: 15px; } 
+            
+            /* تعديل: زيادة ارتفاع الصورة لتناسب العرض الكامل */
+            .item-image { height: 200px; } 
+            
+            /* تعديل: تحسين أحجام الخطوط لتكون مقروءة بوضوح */
+            .item-name-ar { font-size: 16px; } 
+            .item-name-en { font-size: 13px; } 
+            .item-price { font-size: 16px; padding: 6px 10px; top: 15px; left: 15px; } 
+            .item-desc-ar, .item-desc-en { font-size: 12px; }
+            .container { padding: 15px; }
         }
 
         /* الفوتر وزر العودة */
@@ -91,8 +99,8 @@
 
 <header>
     <img src="logo.png" alt="Kweider Logo" class="logo" onerror="this.src='https://via.placeholder.com/150/000000/D4AF37?text=KWEIDER'">
-    <div class="welcome-msg">تصفح المنيو ونادِ الموظف لخدمتك</div>
-    <span class="welcome-en">Welcome! Please browse and call staff to order.</span>
+    <div class="welcome-msg">دَلِّلْ حَوَاسَّكَ بِاخْتِيَارَاتِكَ، وَدَعْ فَرِيقَنَا يَعْتَنِي بِأَدَقِّ تَفَاصِيلِ رِضَاكَ.</div>
+    <span class="welcome-en">Enjoy your choice while our team takes care of every detail to ensure your complete satisfaction.</span>
     <br>
     <a href="https://wa.me/447440444500" class="header-contact-btn" target="_blank">
         🌟 رضائكم غايتنا.. تواصل مع الإدارة | Contact Management
@@ -118,17 +126,17 @@
         <h2 class="section-title">🍳 فطور Breakfast</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£9.00</span>
+                <span class="item-price">£00.00</span>
                 <img src="fatteh.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Breakfast'">
                 <div class="item-details">
-                    <div class="item-name-ar">فطور شامي أصيل</div>
+                    <div class="item-name-ar">الفطور الشامي الأصيل</div>
                     <div class="item-name-en">Authentic Damascene Breakfast</div>
-                    <div class="item-desc-ar">تشكيلة من الأجبان، الزيتون، والمربيات مع الخبز الطازج.</div>
-                    <div class="item-desc-en">Assortment of cheeses, olives, and jams with fresh bread.</div>
+                    <div class="item-desc-ar">(نحن نجهز قائمة فطور شامي ستكون متاحة قريباً)..</div>
+                    <div class="item-desc-en">"We are preparing a Levantine breakfast menu that will be available soon.".</div>
                     <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: حليب، غلوتين.<br>
+                        يحتوي هذا المنتج على: نعمل على الشرح.<br>
                         <span style="color:#ffc107;">Contains: Milk, Gluten.</span><br>
                         <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
                     </div>
@@ -144,35 +152,34 @@
                 <span class="item-price">£7.50</span>
                 <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kunafa'">
                 <div class="item-details">
-                    <div class="item-name-ar">كنافة بالجبن</div>
+                    <div class="item-name-ar">كنافة نابلسية بالجبن الفاخر </div>
                     <div class="item-name-en">Cheese Kunafa</div>
-                    <div class="item-desc-ar">كنافة نابلسية ساخنة محشوة بالجبنة الغنية.</div>
-                    <div class="item-desc-en">Served hot with rich cheese filling.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-desc-ar">عجينة الكنافة الناعمة والمحمرة، تغطي طبقة سخية من الجبن الفاخر الدافئ والمطاطي، ومحلاة بالقطر الغني لتجربة تذوق أصيلة..</div>
+                    <div class="item-desc-en">Fine, golden-roasted pastry dough covering a generous layer of warm, stretchy premium cheese, sweetened with rich syrup for an authentic tasting experience..</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️للحساسية والملاحظات الهامة اضغط هنا</button>
                     <div class="allergy-content">
-                        <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish).</span>
+                        <strong>Allergies & Important Notes:</strong><br>
+                   قد يحتوي على قطع صغيرة من قشور الفستق    / يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish) / May contain small pieces of pistachio shells .</span>
                     </div>
                 </div>
             </div>
 <div class="item-card">
-    <span class="item-price">£7.5.00</span>
-    <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">كنافة خشنة بالجبن الفاخر</div>
-        <div class="item-name-en">Premium Cheese Coarse Kunafa</div>
-        <div class="item-desc-ar">خيوط الكنافة الخشنة والمقرمشة، محشوة بطبقة غنية من الجبن الفاخر الذائب. تُحلى بالقطر لتقدم توازناً مثالياً بين القرمشة والمذاق الغني..</div>
-        <div class="item-desc-en">Crispy, golden coarse pastry threads filled with a rich layer of premium melting cheese. Sweetened with syrup for the perfect balance of crunch and rich flavor.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: الجلوتين (القمح)، الحليب، المكسرات.<br>
-            <span style="color:#ffc107;">Contains: Gluten (Wheat), Milk, Tree Nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
+                <span class="item-price">£7.50</span>
+                <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kunafa'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة خشنة بالجبن الفاخر </div>
+                    <div class="item-name-en">Cheese Kunafa</div>
+                    <div class="item-desc-ar">خيوط الكنافة الخشنة والمقرمشة، محشوة بطبقة غنية من الجبن الفاخر الذائب. تُحلى لتقدم توازناً مثالياً بين القرمشة والمذاق الغني..</div>
+                    <div class="item-desc-en">Fine, golden-roasted pastry dough covering a generous layer of warm, stretchy premium cheese, sweetened with rich syrup for an authentic tasting experience..</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️للحساسية والملاحظات الهامة اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergies & Important Notes:</strong><br>
+                   قد يحتوي على قطع صغيرة من قشور الفستق    / يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish) / May contain small pieces of pistachio shells .</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
