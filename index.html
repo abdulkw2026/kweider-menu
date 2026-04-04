@@ -8,7 +8,7 @@
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding: 0; scroll-behavior: smooth; }
         header { background-color: #000000; text-align: center; padding: 20px 10px; border-bottom: 3px solid #D4AF37; }
         .logo { max-width: 180px; height: auto; margin-bottom: 10px; }
-        .welcome-msg { color: #fff; font-size: 14px; margin-bottom: 5px; }
+        .welcome-msg { color: #fff; font-size: 18px; margin-bottom: 5px; }
         .welcome-en { color: #D4AF37; font-size: 13px; font-style: italic; direction: ltr; display: block; }
 
         .categories-bar {
@@ -45,10 +45,18 @@
         .item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .item-card { background: #1e1e1e; border-radius: 20px; overflow: hidden; border: 1px solid #333; box-shadow: 0 6px 15px rgba(0,0,0,0.4); transition: transform 0.3s; position: relative; }
         
-        .item-image { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid #D4AF37; }
+        .item-image { 
+            width: 100%; 
+            height: 220px; 
+            object-fit: cover; 
+            border-bottom: 2px solid #D4AF37; 
+            cursor: zoom-in; 
+            transition: opacity 0.3s, transform 0.3s; 
+        }
+        .item-image:hover { opacity: 0.8; }
+
         .item-details { padding: 15px; text-align: center; }
         
-        /* التنسيقات المحدثة لفصل اللغات بشكل مثالي */
         .item-name-ar { font-weight: bold; font-size: 18px; color: #ffffff; margin-bottom: 3px; direction: rtl; text-align: center; }
         .item-name-en { font-weight: bold; font-size: 14px; color: #D4AF37; margin-bottom: 8px; direction: ltr; text-align: center; }
         .item-desc-ar { color: #dddddd; font-size: 13px; margin: 5px 0; line-height: 1.5; direction: rtl; text-align: center; }
@@ -56,30 +64,52 @@
 
         .item-price { position: absolute; top: 15px; left: 15px; background-color: rgba(212, 175, 55, 0.95); color: #000000; font-weight: bold; font-size: 18px; padding: 8px 12px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
         
-        /* زر وصندوق الحساسية */
         .allergy-btn { background-color: #ffc107; color: #000000; border: none; padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; width: 100%; margin-top: 10px; transition: 0.3s; }
         .allergy-btn:hover { background-color: #e0a800; }
         .allergy-content { display: none; background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 10px; border-radius: 8px; margin-top: 8px; font-size: 11px; color: #dddddd; text-align: center; line-height: 1.6; }
 
-        /* --------------------------------------------------- */
-        /* منطقة العملية الجراحية: تعديلات الهاتف المحمول */
-        /* --------------------------------------------------- */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background-color: rgba(0, 0, 0, 0.85); 
+            backdrop-filter: blur(5px); 
+        }
+        .modal.show-modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content { 
+            max-width: 90%; 
+            max-height: 85vh; 
+            border-radius: 10px; 
+            border: 2px solid #D4AF37; 
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); 
+            animation: zoomIn 0.3s ease; 
+            object-fit: contain; 
+            cursor: zoom-out;
+        }
+
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .close-modal { position: absolute; top: 15px; right: 25px; color: #D4AF37; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 10000; }
+        .close-modal:hover { color: #ffffff; }
+
         @media (max-width: 600px) {
-            /* تعديل: جعل المنتجات تظهر تحت بعضها بعمود واحد (1fr) */
             .item-grid { grid-template-columns: 1fr; gap: 15px; } 
-            
-            /* تعديل: زيادة ارتفاع الصورة لتناسب العرض الكامل */
             .item-image { height: 200px; } 
-            
-            /* تعديل: تحسين أحجام الخطوط لتكون مقروءة بوضوح */
             .item-name-ar { font-size: 16px; } 
             .item-name-en { font-size: 13px; } 
             .item-price { font-size: 16px; padding: 6px 10px; top: 15px; left: 15px; } 
             .item-desc-ar, .item-desc-en { font-size: 12px; }
             .container { padding: 15px; }
+            .modal-content { max-width: 95%; }
         }
 
-        /* الفوتر وزر العودة */
         footer { background-color: #0b0b0b; text-align: center; padding: 40px 20px; margin-top: 50px; border-top: 2px solid #D4AF37; }
         .footer-logo { max-width: 120px; margin-bottom: 15px; }
         .footer-title { color: #D4AF37; font-size: 18px; margin-bottom: 10px; font-weight: bold; }
@@ -89,7 +119,28 @@
         .management-contact { background: #1a1a1a; border: 1px dashed #D4AF37; padding: 20px; border-radius: 15px; margin: 25px auto 10px; max-width: 400px; }
         .management-contact p { margin: 0 0 15px 0; font-size: 13px; color: #fff; }
         .whatsapp-btn { background-color: #25D366; color: white; text-decoration: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
-        .header-contact-btn { display: inline-block; margin-top: 15px; padding: 8px 20px; background-color: transparent; color: #D4AF37; border: 1px solid #D4AF37; border-radius: 25px; text-decoration: none; font-size: 12px; font-weight: bold; transition: 0.3s; }
+        .header-contact-btn { 
+    display: inline-block; 
+    margin-top: 15px; 
+    padding: 10px 25px; /* تكبير المسافة الداخلية للزر */
+    background-color: #D4AF37; /* جعلنا الخلفية ذهبية بالكامل لبروز أكبر */
+    color: #000000; /* تغيير لون النص للأسود ليقرأ بوضوح فوق الذهبي */
+    border: none; /* إزالة الإطار لأنه لم يعد ضرورياً */
+    border-radius: 25px; 
+    text-decoration: none; 
+    font-size: 20px; /* 👈 هنا قمنا بتكبير حجم الخط من 12 إلى 15 */
+    font-weight: bold; /* جعل الخط سميكاً */
+    font-family: 'Segoe UI', Tahoma, sans-serif; /* 👈 هنا نحدد نوع الخط */
+    transition: 0.3s; 
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4); /* إضافة ظل خفيف للزر لجعله يبدو بارزاً 3D */
+}
+
+/* تأثير التمرير (عند وضع الماوس فوقه) */
+.header-contact-btn:hover { 
+    background-color: #ffffff; /* يتغير للأبيض عند التمرير */
+    color: #000000; 
+    transform: scale(1.05); /* يكبر حجم الزر قليلاً بحركة لطيفة */
+}
         .header-contact-btn:hover { background-color: #D4AF37; color: #000; }
         #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 999; font-size: 20px; border: none; outline: none; background-color: #D4AF37; color: #000; cursor: pointer; width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: background-color 0.3s, transform 0.3s; }
         #backToTop:hover { background-color: #fff; transform: scale(1.1); }
@@ -118,6 +169,7 @@
     <button class="cat-btn" onclick="filterMenu('cold', this)">Cold Drinks</button>
     <button class="cat-btn" onclick="filterMenu('hot', this)">Hot Drinks</button>
     <button class="cat-btn" onclick="filterMenu('fruit', this)">Fruit Salad</button>
+    <button class="cat-btn" onclick="filterMenu('western', this)">اكلات غربية Western Sweets</button>
 </nav>
 
 <div class="container" id="main-menu">
@@ -131,8 +183,8 @@
                 <div class="item-details">
                     <div class="item-name-ar">الفطور الشامي الأصيل</div>
                     <div class="item-name-en">Authentic Damascene Breakfast</div>
-                    <div class="item-desc-ar">(نحن نجهز قائمة فطور شامي ستكون متاحة قريباً)..</div>
-                    <div class="item-desc-en">"We are preparing a Levantine breakfast menu that will be available soon.".</div>
+                    <div class="item-desc-ar">(نحن نجهز قائمة فطور شامي ستكون متاحة قريباً).</div>
+                    <div class="item-desc-en">We are preparing a Levantine breakfast menu that will be available soon.</div>
                     <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
@@ -154,29 +206,29 @@
                 <div class="item-details">
                     <div class="item-name-ar">كنافة نابلسية بالجبن الفاخر </div>
                     <div class="item-name-en">Cheese Kunafa</div>
-                    <div class="item-desc-ar">عجينة الكنافة الناعمة والمحمرة، تغطي طبقة سخية من الجبن الفاخر الدافئ والمطاطي، ومحلاة بالقطر الغني لتجربة تذوق أصيلة..</div>
-                    <div class="item-desc-en">Fine, golden-roasted pastry dough covering a generous layer of warm, stretchy premium cheese, sweetened with rich syrup for an authentic tasting experience..</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️للحساسية والملاحظات الهامة اضغط هنا</button>
+                    <div class="item-desc-ar">عجينة الكنافة الناعمة والمحمرة، تغطي طبقة سخية من الجبن الفاخر الدافئ والمطاطي، ومحلاة بالقطر الغني لتجربة تذوق أصيلة.</div>
+                    <div class="item-desc-en">Fine, golden-roasted pastry dough covering a generous layer of warm, stretchy premium cheese, sweetened with rich syrup for an authentic tasting experience.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ للحساسية والملاحظات الهامة اضغط هنا</button>
                     <div class="allergy-content">
                         <strong>Allergies & Important Notes:</strong><br>
-                   قد يحتوي على قطع صغيرة من قشور الفستق    / يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish) / May contain small pieces of pistachio shells .</span>
+                        قد يحتوي على قطع صغيرة من قشور الفستق / يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish) / May contain small pieces of pistachio shells.</span>
                     </div>
                 </div>
             </div>
-<div class="item-card">
+            <div class="item-card">
                 <span class="item-price">£7.50</span>
                 <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kunafa'">
                 <div class="item-details">
                     <div class="item-name-ar">كنافة خشنة بالجبن الفاخر </div>
-                    <div class="item-name-en">Cheese Kunafa</div>
-                    <div class="item-desc-ar">خيوط الكنافة الخشنة والمقرمشة، محشوة بطبقة غنية من الجبن الفاخر الذائب. تُحلى لتقدم توازناً مثالياً بين القرمشة والمذاق الغني..</div>
-                    <div class="item-desc-en">Fine, golden-roasted pastry dough covering a generous layer of warm, stretchy premium cheese, sweetened with rich syrup for an authentic tasting experience..</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️للحساسية والملاحظات الهامة اضغط هنا</button>
+                    <div class="item-name-en">Premium Cheese Coarse Kunafa</div>
+                    <div class="item-desc-ar">خيوط الكنافة الخشنة والمقرمشة، محشوة بطبقة غنية من الجبن الفاخر الذائب. تُحلى لتقدم توازناً مثالياً بين القرمشة والمذاق الغني.</div>
+                    <div class="item-desc-en">Crispy, golden coarse pastry threads filled with a rich layer of premium melting cheese, sweetened with rich syrup for an authentic tasting experience.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ للحساسية والملاحظات الهامة اضغط هنا</button>
                     <div class="allergy-content">
                         <strong>Allergies & Important Notes:</strong><br>
-                   قد يحتوي على قطع صغيرة من قشور الفستق    / يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish) / May contain small pieces of pistachio shells .</span>
+                        قد يحتوي على قطع صغيرة من قشور الفستق / يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish) / May contain small pieces of pistachio shells.</span>
                     </div>
                 </div>
             </div>
@@ -270,7 +322,7 @@
             </div>
             <div class="item-card">
                 <span class="item-price">£8.50</span>
-                <img src="crepe.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Crepe'">
+                <img src="crepe-icecream.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Crepe'">
                 <div class="item-details">
                     <div class="item-name-ar">كريب بوظة</div>
                     <div class="item-name-en">Ice Cream Crepe Pouch</div>
@@ -353,7 +405,34 @@
         </div>
     </div>
 
+    <div id="western" class="menu-section">
+        <h2 class="section-title">🥞 اكلات غربية Western Sweets</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£00.00</span>
+                <img src="crepe.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Crepe'">
+                <div class="item-details">
+                    <div class="item-name-ar">كريب</div>
+                    <div class="item-name-en">Crepe</div>
+                    <div class="item-desc-ar">كريب فرنسي أصيل محشو بألذ النكهات.</div>
+                    <div class="item-desc-en">Authentic French crepe filled with delicious flavors.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ للمزيد من المعلومات اضغط هنا</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، بيض، غلوتين.<br>
+                        <span style="color:#ffc107;">Contains: Milk, Eggs, Gluten.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div> 
+
+<div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="expandedImage">
+</div>
 
 <footer>
     <img src="logo.png" alt="Kweider Logo" class="footer-logo" onerror="this.src='https://via.placeholder.com/120/000000/D4AF37?text=KWEIDER'">
@@ -382,9 +461,26 @@
 <button id="backToTop" onclick="scrollToTop()" title="العودة للأعلى">⬆️</button>
 
 <script>
-    window.onload = function() {
-        filterMenu('all', document.querySelector('.cat-btn'));
-    };
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        const firstBtn = document.querySelector('.cat-btn');
+        if (firstBtn) filterMenu('all', firstBtn);
+
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('expandedImage');
+        const images = document.querySelectorAll('.item-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', function(e) {
+                modal.classList.add('show-modal'); 
+                modalImg.src = this.src; 
+            });
+        });
+
+        modal.addEventListener('click', function() {
+            modal.classList.remove('show-modal'); 
+        });
+    });
 
     function filterMenu(category, btn) {
         const sections = document.querySelectorAll('.menu-section');
@@ -420,10 +516,10 @@
         const content = btn.nextElementSibling; 
         if (content.style.display === "block") {
             content.style.display = "none";
-            btn.innerHTML = "⚠️ إذا كنت تعاني من حساسية اضغط هنا";
+            btn.innerHTML = "⚠️ للمزيد من المعلومات اضغط هنا";
         } else {
             content.style.display = "block";
-            btn.innerHTML = "❌ إغلاق معلومات الحساسية";
+            btn.innerHTML = "❌ إغلاق المعلومات";
         }
     }
 </script>
