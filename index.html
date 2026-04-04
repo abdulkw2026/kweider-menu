@@ -67,6 +67,12 @@
         .allergy-btn { background-color: #ffc107; color: #000000; border: none; padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; width: 100%; margin-top: 10px; transition: 0.3s; }
         .allergy-btn:hover { background-color: #e0a800; }
         .allergy-content { display: none; background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 10px; border-radius: 8px; margin-top: 8px; font-size: 11px; color: #dddddd; text-align: center; line-height: 1.6; }
+/* تنسيق الكلمات المسببة للحساسية */
+.allergen-word {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #ff5252; /* لون أحمر فاتح للتحذير، يمكنك تغييره للذهبي #D4AF37 إذا أردت */
+}
 
         .modal { 
             display: none; 
@@ -232,6 +238,91 @@
                     </div>
                 </div>
             </div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">كنافة نابلسية فاخرة بالقشطة الطازجة</div>
+        <div class="item-name-en">Premium Cream Nabulsi Kunafa</div>
+        <div class="item-desc-ar">عجينة الكنافة الناعمة والمحمرة بعناية، تتوجها طبقة غنية ووفيرة من القشطة الطازجة، وتُحلى بالقطر الذهبي لتجربة تذوق مثالية تجمع بين خفة القشطة وقرمشة الكنافة الأصيلة.</div>
+        <div class="item-desc-en">Fine, golden-roasted pastry dough topped with a generous, rich layer of fresh cream, sweetened with golden syrup for a perfect tasting experience combining the lightness of cream with authentic kunafa crunch. flavor.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: الجلوتين (القمح)، الحليب، المكسرات.<br>
+            <span style="color:#ffc107;">Contains: Gluten (Wheat), Milk, Tree Nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">كنافة عثملية فاخرة بالقشطة الطازجة</div>
+        <div class="item-name-en">Premium Cream Osmalieh Kunafa</div>
+        <div class="item-desc-ar">طبقتان من خيوط العثملية الذهبية والمحمصة لتمنحك قرمشة استثنائية، تتوسطهما حشوة غنية ووفيرة من القشطة الطازجة والناعمة. تُحلى بالقطر لتجربة فاخرة تمزج بين القرمشة الفائقة والنعومة المطلقة.</div>
+        <div class="item-desc-en">Two layers of golden, supremely crispy roasted pastry threads (Osmalieh), embracing a rich heart of fresh, smooth cream. Sweetened with syrup for a luxurious experience blending ultimate crunch with absolute smoothness.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: الجلوتين (القمح)، الحليب، المكسرات.<br>
+            <span style="color:#ffc107;">Contains: Gluten (Wheat), Milk, Tree Nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£10.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">كنافة خشنة بعجينة الفستق الفاخرة</div>
+        <div class="item-name-en">Premium Pistachio Coarse Kunafa</div>
+        <div class="item-desc-ar">اكتشف التوازن المثالي للقرمشة الذهبية مع الكنافة الخشنة، المحشوة بسخاء بطبقة غنية ومخملية من عجينة الفستق. حلوى شرقية فاخرة صُنعت بشغف لتمنحك تجربة تذوق لا تُنسى.</div>
+        <div class="item-desc-en">Discover the perfect balance of textures with our golden, crispy coarse Kunafa, generously filled with a rich, velvety pistachio paste. A luxurious Middle Eastern delight, crafted with passion for an unforgettable taste.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: يحتوي على المكسرات (الفستق)، الجلوتين (القمح)، والألبان (الحليب/السمن). يُحضّر في منشأة تتعامل مع مكسرات أخرى..<br>
+            <span style="color:#ffc107;">Contains: Contains Nuts (Pistachios), Gluten (Wheat), and Dairy (Milk/Ghee). Prepared in a facility that handles other nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">كنافة خشنة بكريمة البسكويت (لوتس) الفاخرة</div>
+        <div class="item-name-en">Premium Caramel Biscuit (Lotus) Coarse Kunafa</div>
+        <div class="item-desc-ar">استمتع بالقرمشة الذهبية المذهلة مع الكنافة الخشنة، المحشوة بطبقة غنية ومخملية من كريمة البسكويت المكرملة. لمسة عصرية لا تُقاوم لطبقك الشرقي المفضل.</div>
+        <div class="item-desc-en">Experience the ultimate crunch with our golden coarse Kunafa, decadently layered with a smooth, caramelized biscuit spread. A modern, irresistible twist on a classic Middle Eastern favorite.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي على الجلوتين (القمح)، الألبان (الحليب/السمن)، والصويا. يُحضّر في منشأة تتعامل مع المكسرات.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat), Dairy (Milk/Ghee), and Soya. Prepared in a facility that handles nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">كنافة خشنة بالشوكولاتة الفاخرة</div>
+        <div class="item-name-en">Premium Chocolate Coarse Kunafa</div>
+        <div class="item-desc-ar">استمتع بالانسجام المثالي بين قرمشة الكنافة الخشنة الذهبية وقلب غني من الشوكولاتة الفاخرة الذائبة. مزيج فخم يجمع بين الأصالة الشرقية والمذاق الحلو الذي لا يُقاوم.</div>
+        <div class="item-desc-en">Indulge in the perfect harmony of crispy, golden coarse Kunafa and a heart of rich, melting premium chocolate. A luxurious fusion of Middle Eastern tradition and decadent sweetness.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على:الجلوتين (القمح)، الألبان (الحليب/السمن)، والصويا. يُحضّر في منشأة تتعامل مع المكسرات.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat), Dairy (Milk/Ghee), and Soya. Prepared in a facility that handles nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 
@@ -239,21 +330,198 @@
         <h2 class="section-title">☁️ أنواع القشطة Sweets with Cream</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£6.50</span>
-                <img src="cream.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Cream'">
+                <span class="item-price">£7.00</span>
+                <img src="Halawet el-Jibn.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Cream'">
                 <div class="item-details">
-                    <div class="item-name-ar">حلاوة الجبن</div>
-                    <div class="item-name-en">Halawat Al-Jibn</div>
-                    <div class="item-desc-ar">لفائف الجبن المحشوة بالقشطة البلدية الطازجة.</div>
-                    <div class="item-desc-en">Cheese rolls stuffed with fresh cream.</div>
+                    <div class="item-name-ar">حلاوة الجبن الفاخرة</div>
+                    <div class="item-name-en">Premium Cheese Halawet el-Jibn</div>
+                    <div class="item-desc-ar">استمتع بالمذاق الأسطوري لفائف عجينة الجبن الناعمة، المحشوة بالقشطة الطازجة والمزينة بالفستق الحلبي الفاخر. تحفة فنية من المطبخ السوري تذوب في الفم لتمنحك تجربة أصيلة لا تُنسى.
+
+3. مسببات الحساسية (Allergens)</div>
+                    <div class="item-desc-en">Indulge in the legendary taste of our soft cheese dough rolls, delicately filled with fresh, velvety cream and topped with aromatic pistachios. A true Syrian masterpiece that melts in your mouth.</div>
                     <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: حليب، ومكسرات.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Nuts.</span>
+                        يحتوي هذا المنتج على: يحتوي على الألبان (حليب/جبن) والمكسرات (الفستق). يُحضّر في منشأة تتعامل مع الجلوتين..<br>
+                        <span style="color:#ffc107;">Contains:Contains Dairy (Milk/Cheese) and Nuts (Pistachios). Prepared in a facility that handles gluten.</span>
                     </div>
                 </div>
             </div>
+<div class="item-card">
+    <span class="item-price">£4.00</span>
+    <img src="Halawet el-Jibn" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">نمورة (بقلاوة) بالقشطة الفاخرة</div>
+        <div class="item-name-en">"Premium Cream Baklawa "Namoura
+
+</div>
+        <div class="item-desc-ar">مزيج ساحر بين طبقات الرقائق الهشة المخبوزة بالسمن وقلب غني بالقشطة المخملية الفاخرة. تذوق أصالة التقاليد الشرقية في كل قطعة من النمورة الذهبية.</div>
+        <div class="item-desc-en">A heavenly fusion of delicate, buttery filo layers and a rich, velvety cream center. Experience the authentic taste of tradition in every bite of our golden Namoura.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: الجلوتين (القمح) والألبان (الحليب/السمن). يُحضّر في منشأة تتعامل مع المكسرات.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat) and Dairy (Milk/Ghee). Prepared in a facility that handles nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">مبرومة بالقشطة والفستق الفاخرة</div>
+        <div class="item-name-en">Premium Cream and Pistachio Mabrouma</div>
+        <div class="item-desc-ar">استمتع بتجربة ملكية مع خيوط المبرومة الذهبية المقرمشة، الملفوفة يدوياً بعناية والمحشوة بالقشطة الغنية والفستق الحلبي الفاخر. تحلية فاخرة تليق بكل مناسباتكم.</div>
+        <div class="item-desc-en">Experience the ultimate indulgence with our golden, crispy Mabrouma strands, meticulously hand-rolled and filled with rich cream and premium pistachios. A royal treat for every occasion.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: حتوي على الألبان (الحليب/السمن)، المكسرات (الفستق)، والجلوتين (القمح). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
+            <span style="color:#ffc107;">Contains: Contains Dairy (Milk/Ghee), Nuts (Pistachios), and Gluten (Wheat). Prepared in a facility that handles other nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">وربات بالقشطة الفاخرة</div>
+        <div class="item-name-en">Premium Cream Triangle Warbat</div>
+        <div class="item-desc-ar">تذوق سحر القرمشة مع مثلثات الوربات الذهبية. طبقات من رقائق الفيلو الهشة والمطوية ببراعة، تحتضن قلباً نابضاً بالقشطة الطازجة الغنية. تباين مذهل بين الهشاشة الخيالية والنعومة المخملية التي تذوب في الفم.</div>
+        <div class="item-desc-en">Savor the delicate crunch of our signature triangular Warbat. Expertly folded layers of golden filo pastry gently envelope a luscious, fresh cream filling. A striking contrast of crispy textures and a smooth, melt-in-your-mouth center.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: على الجلوتين (القمح) والألبان (الحليب/السمن). يُحضّر في منشأة تتعامل مع المكسرات.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat) and Dairy (Milk/Ghee). Prepared in a facility that handles nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">مدلوقة بالقشطة الفاخرة</div>
+        <div class="item-name-en">Premium Cream Madlouka</div>
+        <div class="item-desc-ar">دلل حواسك بطبقة غنية من عجينة السميد المحمصة والمشبعة بالقطر، تعلوها طبقة سخية من القشطة الطازجة والمزينة بالمكسرات. تجربة شرقية أصيلة تجمع بين القوام الناعم والحلاوة المتوازنة التي تذوب في الفم.</div>
+        <div class="item-desc-en">Treat yourself to a luscious base of roasted, syrup-soaked semolina dough, lavishly crowned with fresh, velvety cream and a sprinkle of nuts. An authentic Middle Eastern delight offering a perfect harmony of soft textures and balanced sweetness.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: الجلوتين (السميد/القمح)، الألبان (الحليب/السمن)، والمكسرات (الفستق/اللوز). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Semolina/Wheat), Dairy (Milk/Ghee), and Nuts (Pistachios/Almonds). Prepared in a facility that handles other nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">مفروكة بالقشطة الفاخرة</div>
+        <div class="item-name-en">Premium Cream Mafroukeh</div>
+        <div class="item-desc-ar">اكتشف النكهات العميقة والأصيلة للمفروكة الفاخرة. قاعدة غنية باللون الأخضر الداكن من السميد المحمص والمفروك بعناية مع الفستق الحلبي، تتوجها طبقة سخية من القشطة الطازجة والمخملية. رحلة حسية استثنائية في كل قضمة.</div>
+        <div class="item-desc-en">Discover the deep, earthy flavors of our signature Mafroukeh. A rich, dark green base of roasted semolina meticulously rubbed with premium pistachios, beautifully crowned with a generous layer of fresh, velvety cream. An exquisite sensory journey in every bite.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: يحتوي على الجلوتين (السميد/القمح)، الألبان (الحليب/السمن)، والمكسرات (الفستق). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Semolina/Wheat), Dairy (Milk/Ghee), and Nuts (Pistachios). Prepared in a facility that handles other nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">قطايف بالقشطة الفاخرة</div>
+        <div class="item-name-en">Premium Cream Qatayef</div>
+        <div class="item-desc-ar">تلذذ بقطعة من الأصالة مع القطايف الذهبية الطرية، المطوية بعناية والمحشوة بسخاء بالقشطة الطازجة والمخملية. لمسة أخيرة من الفستق الحلبي المجروش لتكمل لوحة فنية من المذاق الشرقي الذي يزين أوقاتك.
+
+3. مسببات الحساسية (Allergens)</div>
+        <div class="item-desc-en">Elevate your dessert experience with our authentic Middle Eastern folded pancakes. Soft, golden dough generously stuffed with velvety fresh cream and exquisitely garnished with crushed pistachios. A bite-sized delight that captures the true essence of tradition.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: يحتوي على الجلوتين (القمح)، الألبان (الحليب)، والمكسرات (الفستق). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat), Dairy (Milk), and Nuts (Pistachios). Prepared in a facility that handles other nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">قطايف بالجوز الفاخرة</div>
+        <div class="item-name-en">Premium Walnut Qatayef</div>
+        <div class="item-desc-ar">انغمس في نكهات الدفء والأصالة مع حبات القطايف الذهبية المقرمشة. مطوية بإحكام ومحشوة بسخاء بخلطة غنية من الجوز الفاخر ولمسة ساحرة من القرفة. حلوى تقليدية تبعث على السعادة وتمنحك قرمشة لا تُنسى مع كل قضمة.</div>
+        <div class="item-desc-en">Immerse yourself in the comforting flavors of our golden, crispy Qatayef. Perfectly sealed and generously filled with a warm, spiced mixture of premium walnuts and a hint of cinnamon. A heart-warming traditional treat that promises the perfect crunch in every bite.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: الجلوتين (القمح) والمكسرات (الجوز). قد يحتوي على آثار من الألبان (إذا قُليت بالسمن). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat) and Nuts (Walnuts). May contain traces of Dairy (if fried in ghee). Prepared in a facility that handles other nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">وردات بالقشطة الفاخرة</div>
+        <div class="item-name-en">Premium Cream Wardat</div>
+        <div class="item-desc-ar">زيّن مائدتك بحبات الوَردات الأنيقة. طبقتان من الرقائق الذهبية المخبوزة بعناية لتتخذ شكل زهرة فاتنة، تحتضنان قلباً غنياً من القشطة الطازجة، وتتوجها رشة رقيقة من الفستق الحلبي. لوحة فنية ساحرة تجمع بين القرمشة المثالية والنعومة المخملية.</div>
+        <div class="item-desc-en">Delight in our elegant, flower-shaped Wardat. Two perfectly baked, golden fluted pastry shells embracing a generous heart of rich, fresh cream, elegantly crowned with a delicate sprinkle of pistachios. A visually stunning harmony of crunch and creamy perfection.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: الجلوتين (القمح)، الألبان (الحليب/السمن)، والمكسرات (الفستق). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
+            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat), Dairy (Milk/Ghee), and Nuts (Pistachios). Prepared in a facility that handles other nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">بببببببب</div>
+        <div class="item-name-en">bbbbbbbbbbbbbb</div>
+        <div class="item-desc-ar">بببببببببب</div>
+        <div class="item-desc-en">bbbbbbbbbbbbbbbb</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: بببببببببببب<br>
+            <span style="color:#ffc107;">Contains: bbbbbbbbbbbbbbb</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">بببببببب</div>
+        <div class="item-name-en">bbbbbbbbbbbbbb</div>
+        <div class="item-desc-ar">بببببببببب</div>
+        <div class="item-desc-en">bbbbbbbbbbbbbbbb</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: بببببببببببب<br>
+            <span style="color:#ffc107;">Contains: bbbbbbbbbbbbbbb</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 
@@ -298,6 +566,23 @@
                     </div>
                 </div>
             </div>
+<div class="item-card">
+    <span class="item-price">£8.00</span>
+    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
+    <div class="item-details">
+        <div class="item-name-ar">وربات بالفستق الفاخرة</div>
+        <div class="item-name-en">Premium Pistachio Triangle "Warba"</div>
+        <div class="item-desc-ar">بببببببببب</div>
+        <div class="item-desc-en">Indulge in our exquisite, triangular Warbat. Layers of flaky, golden-brown filo pastry meticulously hand-crafted and generously bursting with a rich, coarsely chopped green pistachio filling. A masterpiece of crispy texture and aromatic nutty flavour.</div>
+        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+        <div class="allergy-content">
+            <strong>Allergy Information:</strong><br>
+            يحتوي هذا المنتج على: يحتوي على المكسرات (الفستق)، الجلوتين (القمح)، والألبان (السمن/الزبدة). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
+            <span style="color:#ffc107;">Contains: Contains Nuts (Pistachios), Gluten (Wheat), and Dairy (Ghee/Butter). Prepared in a facility that handles other nuts.</span><br>
+            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 
@@ -475,6 +760,27 @@
                 modal.classList.add('show-modal'); 
                 modalImg.src = this.src; 
             });
+        });
+// ---------------------------------------------
+        // رادار الحساسية الذكي (يظلل الكلمات تلقائياً)
+        // ---------------------------------------------
+        const allergens = [
+            // الكلمات بالعربية (أضفنا بعض المرادفات لضمان الدقة)
+            'ألبان', 'البان', 'حليب', 'جبن', 'جبنة', 'قشطة', 'سمسم', 
+            'مكسرات', 'فستق', 'كاجو', 'لوز', 'بندق', 'غلوتين', 'جلوتين', 'قمح', 'صويا', 'بيض',
+            // الكلمات بالإنجليزية (مع الجمع)
+            'Dairy', 'Milk', 'Cheese', 'Cream', 'Sesame', 'Nuts', 'Tree Nuts', 
+            'Pistachio', 'Pistachios', 'Cashew', 'Cashews', 'Almond', 'Almonds', 
+            'Hazelnut', 'Hazelnuts', 'Gluten', 'Wheat', 'Soy', 'Soya', 'Egg', 'Eggs'
+        ];
+        
+        // تحويل القائمة إلى صيغة بحث برمجية
+        const regex = new RegExp('(' + allergens.join('|') + ')', 'gi');
+        const allergyBoxes = document.querySelectorAll('.allergy-content');
+        
+        // البحث والاستبدال في كل صناديق الحساسية
+        allergyBoxes.forEach(box => {
+            box.innerHTML = box.innerHTML.replace(regex, '<span class="allergen-word">$1</span>');
         });
 
         modal.addEventListener('click', function() {
