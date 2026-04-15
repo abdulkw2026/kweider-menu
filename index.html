@@ -4,75 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kweider Damascene Sweets Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding: 0; scroll-behavior: smooth; }
-        header { background-color: #000000; text-align: center; padding: 20px 10px; border-bottom: 3px solid #D4AF37; }
-        .logo { max-width: 180px; height: auto; margin-bottom: 10px; }
-        .welcome-msg { color: #fff; font-size: 18px; margin-bottom: 5px; }
-        .welcome-en { color: #D4AF37; font-size: 13px; font-style: italic; direction: ltr; display: block; }
+        :root {
+            --bg-dark: #0A0A0A;
+            --card-bg: #141414;
+            --gold-primary: #C5A059;
+            --gold-light: #E8D090;
+            --text-light: #Fcfcfc;
+            --text-muted: #999999;
+            --gold-gradient: linear-gradient(135deg, #C5A059 0%, #E8D090 50%, #C5A059 100%);
+        }
 
-        .categories-bar {
-            background-color: #000000;
-            position: sticky;
-            top: 0;
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: var(--text-light); 
+            margin: 0; 
+            padding: 0; 
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header { 
+            background-color: #000000; 
+            text-align: center; 
+            padding: 30px 10px; 
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3); 
+        }
+
+        .logo { max-width: 180px; height: auto; margin-bottom: 15px; }
+        
+        .welcome-msg { 
+            color: var(--text-light); 
+            font-size: 18px; 
+            font-weight: 600;
+            margin-bottom: 5px; 
+        }
+        
+        .welcome-en { 
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-primary); 
+            font-size: 14px; 
+            font-style: italic; 
+            direction: ltr; 
+            display: block; 
+            letter-spacing: 0.5px;
+        }
+
+       .categories-bar {
+            background-color: rgba(10, 10, 10, 0.98);
+            position: relative; 
             z-index: 1000;
             display: flex;
-            overflow-x: auto;
-            padding: 15px 5px;
-            border-bottom: 1px solid #D4AF37;
-            gap: 10px;
+            flex-wrap: wrap; 
+            justify-content: center;
+            padding: 5px 5px; 
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            gap: 5px; 
         }
         
         .cat-btn {
-            color: #D4AF37;
-            background: none;
-            border: 1px solid #D4AF37;
-            padding: 10px 20px;
-            border-radius: 25px;
+            color: var(--gold-primary);
+            background: transparent;
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            padding: 5px 14px; 
+            border-radius: 15px;
             cursor: pointer;
             white-space: nowrap;
-            font-size: 14px;
-            transition: 0.3s;
-            font-weight: bold;
+            font-size: 12px; 
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        .cat-btn.active { background-color: #D4AF37; color: #000000; }
-        .container { max-width: 800px; margin: auto; padding: 20px; min-height: 500px; }
-        .menu-section { display: none; margin-bottom: 40px; }
+        .cat-btn.active { 
+            background: var(--gold-gradient); 
+            color: #000000; 
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2);
+        }
+
+        .container { max-width: 1200px; margin: auto; padding: 20px; min-height: 500px; }
+        .menu-section { display: none; margin-bottom: 50px; animation: fadeIn 0.4s ease; }
         
-        .section-title { color: #D4AF37; border-right: 5px solid #D4AF37; padding-right: 15px; margin: 30px 0 20px 0; font-size: 24px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .item-card { background: #1e1e1e; border-radius: 20px; overflow: hidden; border: 1px solid #333; box-shadow: 0 6px 15px rgba(0,0,0,0.4); transition: transform 0.3s; position: relative; }
+        .section-title { 
+            color: var(--gold-primary); 
+            border-right: 3px solid var(--gold-primary); 
+            padding-right: 15px; 
+            margin: 30px 0 25px 0; 
+            font-size: 24px; 
+            font-weight: 700;
+        }
+        
+        /* التعديل الجراحي للشبكة لمنع التمدد على الشاشات الكبيرة */
+        .item-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); 
+            justify-content: center; 
+            gap: 25px; 
+        }
+        
+        .item-card { 
+            background: var(--card-bg); 
+            border-radius: 16px; 
+            overflow: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            position: relative; 
+        }
+        .item-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(197, 160, 89, 0.1); }
         
         .item-image { 
             width: 100%; 
-            height: 220px; 
+            height: 240px; 
             object-fit: cover; 
-            border-bottom: 2px solid #D4AF37; 
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2); 
             cursor: zoom-in; 
-            transition: opacity 0.3s, transform 0.3s; 
+            transition: opacity 0.3s, transform 0.5s; 
         }
-        .item-image:hover { opacity: 0.8; }
+        .item-card:hover .item-image { opacity: 0.9; }
 
-        .item-details { padding: 15px; text-align: center; }
+        .item-details { padding: 20px; text-align: center; }
         
-        .item-name-ar { font-weight: bold; font-size: 18px; color: #ffffff; margin-bottom: 3px; direction: rtl; text-align: center; }
-        .item-name-en { font-weight: bold; font-size: 14px; color: #D4AF37; margin-bottom: 8px; direction: ltr; text-align: center; }
-        .item-desc-ar { color: #dddddd; font-size: 13px; margin: 5px 0; line-height: 1.5; direction: rtl; text-align: center; }
-        .item-desc-en { color: #999999; font-size: 12px; margin: 5px 0 10px 0; line-height: 1.4; direction: ltr; text-align: center; font-style: italic; }
+        .item-name-ar { font-weight: 700; font-size: 20px; color: var(--text-light); margin-bottom: 4px; direction: rtl; }
+        .item-name-en { 
+            font-family: 'Playfair Display', serif;
+            font-weight: 600; 
+            font-size: 16px; 
+            color: var(--gold-primary); 
+            margin-bottom: 12px; 
+            direction: ltr; 
+            font-style: italic;
+        }
+        
+        .item-desc-ar { color: #cccccc; font-size: 14px; margin: 8px 0; line-height: 1.6; font-weight: 400; }
+        .item-desc-en { 
+            color: var(--text-muted); 
+            font-size: 13px; 
+            margin: 5px 0 15px 0; 
+            line-height: 1.5; 
+            direction: ltr; 
+            font-family: 'Playfair Display', serif;
+        }
 
-        .item-price { position: absolute; top: 15px; left: 15px; background-color: rgba(212, 175, 55, 0.95); color: #000000; font-weight: bold; font-size: 18px; padding: 8px 12px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .item-price { 
+            position: absolute; 
+            top: 15px; 
+            left: 15px; 
+            background: rgba(10, 10, 10, 0.95); 
+            color: var(--gold-primary); 
+            font-family: 'Playfair Display', serif;
+            font-weight: 700; 
+            font-size: 18px; 
+            padding: 6px 14px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+            z-index: 10;
+        }
         
-        .allergy-btn { background-color: #ffc107; color: #000000; border: none; padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; width: 100%; margin-top: 10px; transition: 0.3s; }
-        .allergy-btn:hover { background-color: #e0a800; }
-        .allergy-content { display: none; background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 10px; border-radius: 8px; margin-top: 8px; font-size: 11px; color: #dddddd; text-align: center; line-height: 1.6; }
-/* تنسيق الكلمات المسببة للحساسية */
-.allergen-word {
-    font-weight: bold;
-    text-decoration: underline;
-    color: #ff5252; /* لون أحمر فاتح للتحذير، يمكنك تغييره للذهبي #D4AF37 إذا أردت */
-}
+        .allergy-btn { 
+            background-color: transparent; 
+            color: var(--gold-light); 
+            border: 1px dashed rgba(197, 160, 89, 0.5); 
+            padding: 10px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 13px; 
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600; 
+            width: 100%; 
+            margin-top: 15px; 
+            transition: all 0.3s; 
+        }
+        .allergy-btn:hover { background-color: rgba(197, 160, 89, 0.1); border-color: var(--gold-primary); }
+        
+        .allergy-content { 
+            display: none; 
+            background: rgba(0, 0, 0, 0.4); 
+            border: 1px solid rgba(197, 160, 89, 0.2); 
+            padding: 12px; 
+            border-radius: 8px; 
+            margin-top: 10px; 
+            font-size: 12px; 
+            color: #cccccc; 
+            text-align: center; 
+            line-height: 1.6; 
+        }
+        
+        .allergen-word {
+            font-weight: 700;
+            color: #E28743; 
+            border-bottom: 1px dotted #E28743;
+        }
 
         .modal { 
             display: none; 
@@ -80,85 +210,140 @@
             z-index: 9999; 
             left: 0; top: 0; 
             width: 100%; height: 100%; 
-            background-color: rgba(0, 0, 0, 0.85); 
-            backdrop-filter: blur(5px); 
+            background-color: rgba(0, 0, 0, 0.95); 
         }
-        .modal.show-modal {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .modal.show-modal { display: flex; align-items: center; justify-content: center; }
 
         .modal-content { 
             max-width: 90%; 
             max-height: 85vh; 
-            border-radius: 10px; 
-            border: 2px solid #D4AF37; 
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); 
+            border-radius: 12px; 
+            border: 1px solid rgba(197, 160, 89, 0.3); 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8); 
             animation: zoomIn 0.3s ease; 
             object-fit: contain; 
             cursor: zoom-out;
         }
 
-        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes zoomIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        .close-modal { position: absolute; top: 15px; right: 25px; color: #D4AF37; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 10000; }
-        .close-modal:hover { color: #ffffff; }
+        .close-modal { 
+            position: absolute; 
+            top: 20px; 
+            right: 30px; 
+            color: var(--gold-primary); 
+            font-size: 40px; 
+            font-weight: 300; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            z-index: 10000; 
+        }
+        .close-modal:hover { color: #ffffff; transform: scale(1.1); }
 
-        @media (max-width: 600px) {
-            .item-grid { grid-template-columns: 1fr; gap: 15px; } 
-            .item-image { height: 200px; } 
-            .item-name-ar { font-size: 16px; } 
-            .item-name-en { font-size: 13px; } 
-            .item-price { font-size: 16px; padding: 6px 10px; top: 15px; left: 15px; } 
-            .item-desc-ar, .item-desc-en { font-size: 12px; }
-            .container { padding: 15px; }
-            .modal-content { max-width: 95%; }
+        footer { 
+            background-color: #050505; 
+            text-align: center; 
+            padding: 50px 20px; 
+            margin-top: 60px; 
+            border-top: 1px solid rgba(197, 160, 89, 0.2); 
+        }
+        .footer-logo { max-width: 140px; margin-bottom: 20px; opacity: 0.9; }
+        .footer-title { color: var(--gold-primary); font-size: 20px; margin-bottom: 12px; font-weight: 700; }
+        .footer-text { font-size: 14px; margin-bottom: 8px; line-height: 1.6; color: var(--text-muted); }
+        
+        .footer-links { margin: 25px 0; }
+        .footer-links a { 
+            color: #000; 
+            background: var(--gold-gradient); 
+            padding: 8px 18px; 
+            text-decoration: none; 
+            border-radius: 25px; 
+            font-size: 13px; 
+            font-weight: 700; 
+            margin: 5px; 
+            display: inline-block; 
+            transition: 0.3s; 
+        }
+        .footer-links a:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3); }
+        
+        .management-contact { 
+            background: rgba(25, 25, 25, 0.5); 
+            border: 1px solid rgba(197, 160, 89, 0.2); 
+            padding: 25px; 
+            border-radius: 16px; 
+            margin: 35px auto 15px; 
+            max-width: 450px; 
+        }
+        .management-contact p { margin: 0 0 15px 0; font-size: 14px; color: #ccc; line-height: 1.6; }
+        .whatsapp-btn { 
+            background-color: transparent; 
+            color: #25D366; 
+            border: 1px solid #25D366;
+            text-decoration: none; 
+            padding: 10px 25px; 
+            border-radius: 25px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            display: inline-block; 
+            transition: all 0.3s;
+        }
+        .whatsapp-btn:hover { background-color: #25D366; color: #fff; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        
+        .header-contact-btn { 
+           display: inline-block; 
+            margin-top: 8px; 
+            padding: 8px 25px; 
+            background: transparent; 
+            color: var(--gold-primary); 
+            border: 1px solid var(--gold-primary); 
+            border-radius: 30px; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600; 
+            transition: all 0.3s; 
+        }
+        .header-contact-btn:hover { 
+            background: var(--gold-gradient); 
+            color: #000000; 
+            border-color: transparent;
         }
 
-        footer { background-color: #0b0b0b; text-align: center; padding: 40px 20px; margin-top: 50px; border-top: 2px solid #D4AF37; }
-        .footer-logo { max-width: 120px; margin-bottom: 15px; }
-        .footer-title { color: #D4AF37; font-size: 18px; margin-bottom: 10px; font-weight: bold; }
-        .footer-text { font-size: 13px; margin-bottom: 8px; line-height: 1.6; color: #ccc; }
-        .footer-links { margin: 20px 0; }
-        .footer-links a { color: #000; background-color: #D4AF37; padding: 8px 15px; text-decoration: none; border-radius: 20px; font-size: 13px; font-weight: bold; margin: 5px; display: inline-block; transition: 0.3s; }
-        .management-contact { background: #1a1a1a; border: 1px dashed #D4AF37; padding: 20px; border-radius: 15px; margin: 25px auto 10px; max-width: 400px; }
-        .management-contact p { margin: 0 0 15px 0; font-size: 13px; color: #fff; }
-        .whatsapp-btn { background-color: #25D366; color: white; text-decoration: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
-        .header-contact-btn { 
-    display: inline-block; 
-    margin-top: 15px; 
-    padding: 10px 25px; /* تكبير المسافة الداخلية للزر */
-    background-color: #D4AF37; /* جعلنا الخلفية ذهبية بالكامل لبروز أكبر */
-    color: #000000; /* تغيير لون النص للأسود ليقرأ بوضوح فوق الذهبي */
-    border: none; /* إزالة الإطار لأنه لم يعد ضرورياً */
-    border-radius: 25px; 
-    text-decoration: none; 
-    font-size: 20px; /* 👈 هنا قمنا بتكبير حجم الخط من 12 إلى 15 */
-    font-weight: bold; /* جعل الخط سميكاً */
-    font-family: 'Segoe UI', Tahoma, sans-serif; /* 👈 هنا نحدد نوع الخط */
-    transition: 0.3s; 
-    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4); /* إضافة ظل خفيف للزر لجعله يبدو بارزاً 3D */
-}
+        #backToTop { 
+            display: none; 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            z-index: 999; 
+            font-size: 20px; 
+            border: none; 
+            outline: none; 
+            background: var(--gold-gradient); 
+            color: #000; 
+            cursor: pointer; 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+            transition: transform 0.3s; 
+        }
+        #backToTop:hover { transform: scale(1.1); }
 
-/* تأثير التمرير (عند وضع الماوس فوقه) */
-.header-contact-btn:hover { 
-    background-color: #ffffff; /* يتغير للأبيض عند التمرير */
-    color: #000000; 
-    transform: scale(1.05); /* يكبر حجم الزر قليلاً بحركة لطيفة */
-}
-        .header-contact-btn:hover { background-color: #D4AF37; color: #000; }
-        #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 999; font-size: 20px; border: none; outline: none; background-color: #D4AF37; color: #000; cursor: pointer; width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: background-color 0.3s, transform 0.3s; }
-        #backToTop:hover { background-color: #fff; transform: scale(1.1); }
+        @media (max-width: 600px) {
+            .item-image { height: 220px; } 
+            .item-name-ar { font-size: 18px; } 
+            .item-name-en { font-size: 15px; } 
+            .container { padding: 15px; }
+            .modal-content { max-width: 95%; }
+            .section-title { font-size: 22px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="Kweider Logo" class="logo" onerror="this.src='https://via.placeholder.com/150/000000/D4AF37?text=KWEIDER'">
+    <img src="images/logo.webp" alt="Kweider Logo" class="logo" onerror="this.src='https://via.placeholder.com/150/000000/C5A059?text=KWEIDER'">
     <div class="welcome-msg">دَلِّلْ حَوَاسَّكَ بِاخْتِيَارَاتِكَ، وَدَعْ فَرِيقَنَا يَعْتَنِي بِأَدَقِّ تَفَاصِيلِ رِضَاكَ.</div>
     <span class="welcome-en">Enjoy your choice while our team takes care of every detail to ensure your complete satisfaction.</span>
-    <br>
     <a href="https://wa.me/447440444500" class="header-contact-btn" target="_blank">
         🌟 رضائكم غايتنا.. تواصل مع الإدارة | Contact Management
     </a>
@@ -169,10 +354,11 @@
     <button class="cat-btn" onclick="filterMenu('breakfast', this)">فطور Breakfast</button>
     <button class="cat-btn" onclick="filterMenu('kunafa', this)">Kunafa</button>
     <button class="cat-btn" onclick="filterMenu('cream', this)">Sweets with Cream</button>
+    <button class="cat-btn" onclick="filterMenu('arabicsweets', this)">حلويات عربية Arabic Sweets</button>
     <button class="cat-btn" onclick="filterMenu('milkcake', this)">Milk Cake</button>
-    <button class="cat-btn" onclick="filterMenu('baklava', this)">Baklava</button>
     <button class="cat-btn" onclick="filterMenu('icecream', this)">Ice Cream</button>
     <button class="cat-btn" onclick="filterMenu('cold', this)">Cold Drinks</button>
+    <button class="cat-btn" onclick="filterMenu('soft-drinks', this)">مشروبات غازية Soft Drinks</button>
     <button class="cat-btn" onclick="filterMenu('hot', this)">Hot Drinks</button>
     <button class="cat-btn" onclick="filterMenu('fruit', this)">Fruit Salad</button>
     <button class="cat-btn" onclick="filterMenu('western', this)">اكلات غربية Western Sweets</button>
@@ -181,22 +367,378 @@
 <div class="container" id="main-menu">
     
     <div id="breakfast" class="menu-section">
-        <h2 class="section-title">🍳 فطور Breakfast</h2>
+        <h2 class="section-title">🍳 الفطور الشامي Breakfast</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£00.00</span>
-                <img src="fatteh.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Breakfast'">
+                <span class="item-price">£0.00</span>
+                <img src="images/tesqiyeh-oil.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Tesqiyeh'">
                 <div class="item-details">
-                    <div class="item-name-ar">الفطور الشامي الأصيل</div>
-                    <div class="item-name-en">Authentic Damascene Breakfast</div>
-                    <div class="item-desc-ar">(نحن نجهز قائمة فطور شامي ستكون متاحة قريباً).</div>
-                    <div class="item-desc-en">We are preparing a Levantine breakfast menu that will be available soon.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">فتة بالزيت (تسقية)</div>
+                    <div class="item-name-en">Premium Olive Oil Tesqiyeh</div>
+                    <div class="item-desc-ar">تسقية دمشقية أصيلة بالحمص والخبز المحمص، مغمورة بسخاء بزيت الزيتون البكر.</div>
+                    <div class="item-desc-en">Authentic Damascene Tesqiyeh with chickpeas and toasted bread, generously drizzled with extra virgin olive oil.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: نعمل على الشرح.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Gluten.</span><br>
-                        <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، سمسم.<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Sesame.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/fatteh-ghee-nuts.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Fatteh'">
+                <div class="item-details">
+                    <div class="item-name-ar">فتة بالسمنة والمكسرات</div>
+                    <div class="item-name-en">Premium Ghee & Nuts Fatteh</div>
+                    <div class="item-desc-ar">فتة حمص دافئة باللبن، تتوجها طشة السمن الأصيل والمكسرات المحمصة المقرمشة.</div>
+                    <div class="item-desc-en">Warm chickpea Fatteh with yogurt, crowned with sizzling authentic ghee and roasted crunchy nuts.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (سمن/لبن)، سمسم، مكسرات.<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Ghee/Yogurt), Sesame, Nuts.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/foul-oil.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Foul'">
+                <div class="item-details">
+                    <div class="item-name-ar">فول بالزيت</div>
+                    <div class="item-name-en">Premium Olive Oil Foul</div>
+                    <div class="item-desc-ar">فول مدمس محضر بالطريقة الشامية التقليدية، يقدم مع زيت الزيتون البكر والليمون المنعش.</div>
+                    <div class="item-desc-en">Traditional Damascene-style fava beans, served with extra virgin olive oil and refreshing lemon.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/foul-yogurt.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Foul'">
+                <div class="item-details">
+                    <div class="item-name-ar">فول باللبن</div>
+                    <div class="item-name-en">Premium Yogurt Foul</div>
+                    <div class="item-desc-ar">فول مدمس دافئ ممزوج بطحينة اللبن الغنية والثوم ولمسة من زيت الزيتون.</div>
+                    <div class="item-desc-en">Warm fava beans beautifully blended with a rich yogurt-tahini sauce, garlic, and a touch of olive oil.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (لبن)، سمسم (طحينة).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Yogurt), Sesame (Tahini).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/musabaha.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Musabaha'">
+                <div class="item-details">
+                    <div class="item-name-ar">حمص بالطحينة (مسبحة)</div>
+                    <div class="item-name-en">Premium Tahini Musabaha</div>
+                    <div class="item-desc-ar">مسبحة دمشقية كريمية غنية بالطحينة وحبات الحمص الكاملة، مزينة بزيت الزيتون.</div>
+                    <div class="item-desc-en">Creamy Damascene Musabaha rich in tahini and whole chickpeas, beautifully garnished with olive oil.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: سمسم (طحينة).<br>
+                        <span style="color:var(--gold-primary);">Contains: Sesame (Tahini).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/mutabal.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Mutabal'">
+                <div class="item-details">
+                    <div class="item-name-ar">متبل بالباذنجان</div>
+                    <div class="item-name-en">Premium Eggplant Mutabal</div>
+                    <div class="item-desc-ar">باذنجان مشوي ومهروس مع الطحينة واللبن، يقدم بقوام كريمي ونكهة مدخنة ساحرة.</div>
+                    <div class="item-desc-en">Smoky roasted eggplant mashed with tahini and yogurt, offering a mesmerizing creamy texture.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (لبن)، سمسم (طحينة).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Yogurt), Sesame (Tahini).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/baba-ghanouj.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Baba+Ghanouj'">
+                <div class="item-details">
+                    <div class="item-name-ar">بابا غنوج</div>
+                    <div class="item-name-en">Premium Pomegranate Baba Ghanouj</div>
+                    <div class="item-desc-ar">باذنجان مشوي ممزوج بالخضار الطازجة ودبس الرمان الأصيل لمذاق حامض وحلو متوازن.</div>
+                    <div class="item-desc-en">Roasted eggplant mixed with fresh vegetables and authentic pomegranate molasses for a balanced sweet and sour taste.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/labneh.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Labneh'">
+                <div class="item-details">
+                    <div class="item-name-ar">لبنة طازجة</div>
+                    <div class="item-name-en">Premium Olive Oil Labneh</div>
+                    <div class="item-desc-ar">لبنة بلدية طازجة وناعمة، تقدم مع زيت الزيتون البكر لتجربة فطور خفيفة وصحية.</div>
+                    <div class="item-desc-en">Smooth, freshly strained Labneh, served with extra virgin olive oil for a light and healthy breakfast experience.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/white-cheese.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=White+Cheese'">
+                <div class="item-details">
+                    <div class="item-name-ar">جبنة بيضاء بلدية</div>
+                    <div class="item-name-en">Premium Authentic White Cheese</div>
+                    <div class="item-desc-ar">شرائح من الجبنة البلدية البيضاء الطازجة، تذوب في الفم بنكهتها السورية الأصيلة.</div>
+                    <div class="item-desc-en">Slices of fresh, traditional white cheese, melting in your mouth with its authentic flavor.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/shallal-cheese.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Shallal+Cheese'">
+                <div class="item-details">
+                    <div class="item-name-ar">جبنة شلل</div>
+                    <div class="item-name-en">Premium Nigella Shallal Cheese</div>
+                    <div class="item-desc-ar">خيوط جبنة الشلل السورية المجدولة بعناية، والمزينة بحبة البركة السوداء العطرية.</div>
+                    <div class="item-desc-en">Meticulously braided strings of Syrian Shallal cheese, beautifully garnished with nigella seeds.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/fried-akkawi.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Fried+Akkawi'">
+                <div class="item-details">
+                    <div class="item-name-ar">جبنة عكاوي مقلية</div>
+                    <div class="item-name-en">Premium Fried Akkawi Cheese</div>
+                    <div class="item-desc-ar">شرائح من جبنة العكاوي المقلية للون الذهبي، مقرمشة من الخارج ودافئة وطرية من الداخل.</div>
+                    <div class="item-desc-en">Slices of Akkawi cheese fried to a golden crisp, crunchy on the outside and soft on the inside.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/green-olives.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Green+Olives'">
+                <div class="item-details">
+                    <div class="item-name-ar">زيتون أخضر</div>
+                    <div class="item-name-en">Premium Natural Green Olives</div>
+                    <div class="item-desc-ar">حبات الزيتون الأخضر الشامي المنتقاة بعناية، متبلة بخلطة خفيفة ومشهية.</div>
+                    <div class="item-desc-en">Carefully selected Damascene green olives, lightly marinated for an appetizing flavor.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/black-olives.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Black+Olives'">
+                <div class="item-details">
+                    <div class="item-name-ar">زيتون أسود</div>
+                    <div class="item-name-en">Premium Natural Black Olives</div>
+                    <div class="item-desc-ar">زيتون أسود معتق وغني بالنكهات، يكمل مائدة الإفطار الدمشقية بامتياز.</div>
+                    <div class="item-desc-en">Rich, aged black olives that perfectly complement the authentic Damascene breakfast table.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/makdous.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Makdous'">
+                <div class="item-details">
+                    <div class="item-name-ar">مكدوس شامي</div>
+                    <div class="item-name-en">Premium Walnut Makdous</div>
+                    <div class="item-desc-ar">حبات باذنجان صغيرة محشوة بالجوز والفليفلة والثوم، ومغمورة بزيت الزيتون الصافي.</div>
+                    <div class="item-desc-en">Baby eggplants stuffed with walnuts, capsicum, and garlic, fully submerged in pure olive oil.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: مكسرات (جوز).<br>
+                        <span style="color:var(--gold-primary);">Contains: Nuts (Walnut).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/kishkeh.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Kishkeh'">
+                <div class="item-details">
+                    <div class="item-name-ar">كشكة</div>
+                    <div class="item-name-en">Premium Bulgur Kishkeh</div>
+                    <div class="item-desc-ar">مزيج شتوي تقليدي غني من البرغل واللبن والجوز، مزين بزيت الزيتون البكر.</div>
+                    <div class="item-desc-en">A traditional rich winter blend of bulgur, yogurt, and walnuts, gracefully garnished with olive oil.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح/برغل)، حليب (لبن)، مكسرات (جوز).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat/Bulgur), Milk (Yogurt), Nuts (Walnut).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/green-zaatar.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Green+Zaatar'">
+                <div class="item-details">
+                    <div class="item-name-ar">زعتر أخضر حلبي</div>
+                    <div class="item-name-en">Premium Sesame Green Zaatar</div>
+                    <div class="item-desc-ar">خلطة الزعتر الأخضر الأصيلة الممزوجة بالسمسم المحمص والسماق لنكهة لا تقاوم.</div>
+                    <div class="item-desc-en">A classic Aleppian blend of green thyme mixed with roasted sesame seeds and sumac.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: سمسم.<br>
+                        <span style="color:var(--gold-primary);">Contains: Sesame.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/red-zaatar.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Red+Zaatar'">
+                <div class="item-details">
+                    <div class="item-name-ar">زعتر أحمر</div>
+                    <div class="item-name-en">Premium Sumac Red Zaatar</div>
+                    <div class="item-desc-ar">زعتر أحمر أصيل غني بنكهة السماق والتوابل الشامية المحمصة بعناية.</div>
+                    <div class="item-desc-en">Authentic red Zaatar rich in sumac flavor and warmly roasted Damascene spices.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: سمسم.<br>
+                        <span style="color:var(--gold-primary);">Contains: Sesame.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/halawa-butter.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Halawa'">
+                <div class="item-details">
+                    <div class="item-name-ar">حلاوة بالطحينة مع الزبدة</div>
+                    <div class="item-name-en">Premium Butter Tahini Halawa</div>
+                    <div class="item-desc-ar">حلاوة طحينية فاخرة تقدم مع قطع الزبدة الطازجة لتجربة فطور حلوة ومغذية.</div>
+                    <div class="item-desc-en">Luxurious tahini Halawa served with fresh butter cubes for a sweet and nourishing bite.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: سمسم (طحينة)، حليب (زبدة).<br>
+                        <span style="color:var(--gold-primary);">Contains: Sesame (Tahini), Milk (Butter).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/berry-jam.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Berry+Jam'">
+                <div class="item-details">
+                    <div class="item-name-ar">مربى التوت الشامي</div>
+                    <div class="item-name-en">Premium Damascene Berry Jam</div>
+                    <div class="item-desc-ar">مربى التوت الشامي الأصلي، مطبوخ بعناية ليحافظ على قوام وحلاوة الحبات الطبيعية.</div>
+                    <div class="item-desc-en">Authentic Damascene berry jam, carefully cooked to preserve the texture and natural sweetness of the berries.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/apricot-jam.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Apricot+Jam'">
+                <div class="item-details">
+                    <div class="item-name-ar">مربى المشمش</div>
+                    <div class="item-name-en">Premium Syrian Apricot Jam</div>
+                    <div class="item-desc-ar">مربى ذهبي محضر من أجود ثمار المشمش السوري بنكهة الصيف الرائعة.</div>
+                    <div class="item-desc-en">Golden apricot jam prepared from the finest Syrian apricots, capturing the delightful taste of summer.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/bitter-orange-jam.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Bitter+Orange+Jam'">
+                <div class="item-details">
+                    <div class="item-name-ar">مربى النارنج</div>
+                    <div class="item-name-en">Premium Bitter Orange Jam</div>
+                    <div class="item-desc-ar">مربى النارنج الدمشقي العريق، توازن مذهل بين الحلاوة ونكهة الحمضيات المنعشة.</div>
+                    <div class="item-desc-en">Classic Damascene bitter orange jam, offering a stunning balance between sweetness and refreshing citrus flavor.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£0.00</span>
+                <img src="images/citron-jam.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Citron+Jam'">
+                <div class="item-details">
+                    <div class="item-name-ar">مربى الكباد</div>
+                    <div class="item-name-en">Premium Citron Jam</div>
+                    <div class="item-desc-ar">مربى الكباد (الأترج) النادر، يقدم نكهة حمضية عطرية فريدة من نوعها وتذوب بالفم.</div>
+                    <div class="item-desc-en">Rare citron jam, delivering a unique and profoundly aromatic citrus flavor profile.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
                     </div>
                 </div>
             </div>
@@ -207,122 +749,157 @@
         <h2 class="section-title">🥧 كنافة Kunafa</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£7.50</span>
-                <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kunafa'">
+                <span class="item-price">£8.00</span>
+                <img src="images/madlouka.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Madlouka'">
                 <div class="item-details">
-                    <div class="item-name-ar">كنافة نابلسية بالجبن الفاخر </div>
-                    <div class="item-name-en">Cheese Kunafa</div>
-                    <div class="item-desc-ar">عجينة الكنافة الناعمة والمحمرة، تغطي طبقة سخية من الجبن الفاخر الدافئ والمطاطي، ومحلاة بالقطر الغني لتجربة تذوق أصيلة.</div>
-                    <div class="item-desc-en">Fine, golden-roasted pastry dough covering a generous layer of warm, stretchy premium cheese, sweetened with rich syrup for an authentic tasting experience.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ للحساسية والملاحظات الهامة اضغط هنا</button>
+                    <div class="item-name-ar">مدلوقة بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Madlouka</div>
+                    <div class="item-desc-ar">مزيج فاخر من السميد المحمص بخلاصة ماء الزهر، يعلوه طبقة غنية من القشطة الطازجة والفستق الحلبي.</div>
+                    <div class="item-desc-en">Roasted semolina infused with orange blossom, crowned with fresh cream and premium pistachios.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
-                        <strong>Allergies & Important Notes:</strong><br>
-                        قد يحتوي على قطع صغيرة من قشور الفستق / يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish) / May contain small pieces of pistachio shells.</span>
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Nuts (Pistachio).</span>
                     </div>
                 </div>
             </div>
+
             <div class="item-card">
-                <span class="item-price">£7.50</span>
-                <img src="kunafa.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kunafa'">
+                <span class="item-price">£7.00</span>
+                <img src="imageskhashna-cheese.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Kunafa'">
                 <div class="item-details">
-                    <div class="item-name-ar">كنافة خشنة بالجبن الفاخر </div>
-                    <div class="item-name-en">Premium Cheese Coarse Kunafa</div>
-                    <div class="item-desc-ar">خيوط الكنافة الخشنة والمقرمشة، محشوة بطبقة غنية من الجبن الفاخر الذائب. تُحلى لتقدم توازناً مثالياً بين القرمشة والمذاق الغني.</div>
-                    <div class="item-desc-en">Crispy, golden coarse pastry threads filled with a rich layer of premium melting cheese, sweetened with rich syrup for an authentic tasting experience.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ للحساسية والملاحظات الهامة اضغط هنا</button>
+                    <div class="item-name-ar">كنافة خشنة بالجبنة</div>
+                    <div class="item-name-en">Premium Cheese Khashna Kunafa</div>
+                    <div class="item-desc-ar">خيوط الكنافة الذهبية المقرمشة، محشوة بطبقة غنية من الجبن الذائب الدافئ والمطاطي.</div>
+                    <div class="item-desc-en">Crispy golden pastry threads embracing a heart of rich, warm melting cheese.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
-                        <strong>Allergies & Important Notes:</strong><br>
-                        قد يحتوي على قطع صغيرة من قشور الفستق / يحتوي هذا المنتج على: حليب، غلوتين، ومكسرات للتزيين.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Gluten, Nuts (Garnish) / May contain small pieces of pistachio shells.</span>
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (جبن)، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Cheese), Gluten (Wheat).</span>
                     </div>
                 </div>
             </div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">كنافة نابلسية فاخرة بالقشطة الطازجة</div>
-        <div class="item-name-en">Premium Cream Nabulsi Kunafa</div>
-        <div class="item-desc-ar">عجينة الكنافة الناعمة والمحمرة بعناية، تتوجها طبقة غنية ووفيرة من القشطة الطازجة، وتُحلى بالقطر الذهبي لتجربة تذوق مثالية تجمع بين خفة القشطة وقرمشة الكنافة الأصيلة.</div>
-        <div class="item-desc-en">Fine, golden-roasted pastry dough topped with a generous, rich layer of fresh cream, sweetened with golden syrup for a perfect tasting experience combining the lightness of cream with authentic kunafa crunch. flavor.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: الجلوتين (القمح)، الحليب، المكسرات.<br>
-            <span style="color:#ffc107;">Contains: Gluten (Wheat), Milk, Tree Nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">كنافة عثملية فاخرة بالقشطة الطازجة</div>
-        <div class="item-name-en">Premium Cream Osmalieh Kunafa</div>
-        <div class="item-desc-ar">طبقتان من خيوط العثملية الذهبية والمحمصة لتمنحك قرمشة استثنائية، تتوسطهما حشوة غنية ووفيرة من القشطة الطازجة والناعمة. تُحلى بالقطر لتجربة فاخرة تمزج بين القرمشة الفائقة والنعومة المطلقة.</div>
-        <div class="item-desc-en">Two layers of golden, supremely crispy roasted pastry threads (Osmalieh), embracing a rich heart of fresh, smooth cream. Sweetened with syrup for a luxurious experience blending ultimate crunch with absolute smoothness.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: الجلوتين (القمح)، الحليب، المكسرات.<br>
-            <span style="color:#ffc107;">Contains: Gluten (Wheat), Milk, Tree Nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£10.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">كنافة خشنة بعجينة الفستق الفاخرة</div>
-        <div class="item-name-en">Premium Pistachio Coarse Kunafa</div>
-        <div class="item-desc-ar">اكتشف التوازن المثالي للقرمشة الذهبية مع الكنافة الخشنة، المحشوة بسخاء بطبقة غنية ومخملية من عجينة الفستق. حلوى شرقية فاخرة صُنعت بشغف لتمنحك تجربة تذوق لا تُنسى.</div>
-        <div class="item-desc-en">Discover the perfect balance of textures with our golden, crispy coarse Kunafa, generously filled with a rich, velvety pistachio paste. A luxurious Middle Eastern delight, crafted with passion for an unforgettable taste.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: يحتوي على المكسرات (الفستق)، الجلوتين (القمح)، والألبان (الحليب/السمن). يُحضّر في منشأة تتعامل مع مكسرات أخرى..<br>
-            <span style="color:#ffc107;">Contains: Contains Nuts (Pistachios), Gluten (Wheat), and Dairy (Milk/Ghee). Prepared in a facility that handles other nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">كنافة خشنة بكريمة البسكويت (لوتس) الفاخرة</div>
-        <div class="item-name-en">Premium Caramel Biscuit (Lotus) Coarse Kunafa</div>
-        <div class="item-desc-ar">استمتع بالقرمشة الذهبية المذهلة مع الكنافة الخشنة، المحشوة بطبقة غنية ومخملية من كريمة البسكويت المكرملة. لمسة عصرية لا تُقاوم لطبقك الشرقي المفضل.</div>
-        <div class="item-desc-en">Experience the ultimate crunch with our golden coarse Kunafa, decadently layered with a smooth, caramelized biscuit spread. A modern, irresistible twist on a classic Middle Eastern favorite.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي على الجلوتين (القمح)، الألبان (الحليب/السمن)، والصويا. يُحضّر في منشأة تتعامل مع المكسرات.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat), Dairy (Milk/Ghee), and Soya. Prepared in a facility that handles nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">كنافة خشنة بالشوكولاتة الفاخرة</div>
-        <div class="item-name-en">Premium Chocolate Coarse Kunafa</div>
-        <div class="item-desc-ar">استمتع بالانسجام المثالي بين قرمشة الكنافة الخشنة الذهبية وقلب غني من الشوكولاتة الفاخرة الذائبة. مزيج فخم يجمع بين الأصالة الشرقية والمذاق الحلو الذي لا يُقاوم.</div>
-        <div class="item-desc-en">Indulge in the perfect harmony of crispy, golden coarse Kunafa and a heart of rich, melting premium chocolate. A luxurious fusion of Middle Eastern tradition and decadent sweetness.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على:الجلوتين (القمح)، الألبان (الحليب/السمن)، والصويا. يُحضّر في منشأة تتعامل مع المكسرات.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat), Dairy (Milk/Ghee), and Soya. Prepared in a facility that handles nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
+
+            <div class="item-card">
+                <span class="item-price">£7.00</span>
+                <img src="imagesnabulsih.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Kunafa'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة بالجبنة "نابلسية"</div>
+                    <div class="item-name-en">Premium Cheese Nabulsi Kunafa</div>
+                    <div class="item-desc-ar">عجينة الكنافة الناعمة والمحمرة، تغطي طبقة سخية من الجبن الفاخر المطاطي المحلى بالقطر.</div>
+                    <div class="item-desc-en">Fine, golden-roasted pastry dough covering a generous layer of stretchy premium cheese.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (جبن)، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Cheese), Gluten (Wheat).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£7.00</span>
+                <img src="images/osmalieh.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Osmalieh'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة عثملية بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Osmalieh Kunafa</div>
+                    <div class="item-desc-ar">طبقتان من خيوط الكنافة المحمصة والمقرمشة جداً، تتوسطهما حشوة غنية من القشطة الطازجة.</div>
+                    <div class="item-desc-en">Two layers of superbly crispy pastry threads filled with a generous heart of fresh cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (قشطة)، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Cream), Gluten (Wheat).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£8.00</span>
+                <img src="imagesumm-al-narayn.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Kunafa'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة أم النارين بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Umm Al-Narayn Kunafa</div>
+                    <div class="item-desc-ar">كنافة خشنة محمرة بامتياز على الجانبين لتمنحك قرمشة مضاعفة تتناغم مع نعومة القشطة الفاخرة.</div>
+                    <div class="item-desc-en">Double-roasted crispy Kunafa offering an ultimate crunch that perfectly balances the smooth fresh cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (قشطة)، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Cream), Gluten (Wheat).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/pistachio-spread.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Kunafa'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة بصوص الفستق الفاخر</div>
+                    <div class="item-name-en">Premium Pistachio Kunafa Spread</div>
+                    <div class="item-desc-ar">قرمشة الكنافة الخشنة الأصلية، مغطاة بطبقة غنية ومخملية من صوص الفستق الحلبي الخالص.</div>
+                    <div class="item-desc-en">The perfect crunch of coarse Kunafa thickly layered with a velvety, rich pistachio spread.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، مكسرات (فستق)، صويا.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Nuts (Pistachio), Soya.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/chocolate-spread.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Kunafa'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة بالشوكولا الفاخرة</div>
+                    <div class="item-name-en">Premium Chocolate Kunafa Spread</div>
+                    <div class="item-desc-ar">تزاوج مثالي ومبتكر بين الكنافة المقرمشة وطلاء غني من الشوكولاتة الفاخرة الذائبة.</div>
+                    <div class="item-desc-en">A flawless union of crispy Kunafa topped with a decadent layer of premium melting chocolate.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، صويا.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Soya.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/biscoff-spread.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Kunafa'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة بكريمة اللوتس</div>
+                    <div class="item-name-en">Premium Biscoff Kunafa Spread</div>
+                    <div class="item-desc-ar">لمسة عصرية تجمع بين الكنافة الشرقية المقرمشة وكريمة بسكويت اللوتس المكرملة الساحرة.</div>
+                    <div class="item-desc-en">A modern twist combining crispy Middle Eastern Kunafa with caramelized Biscoff biscuit spread.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، صويا.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Soya.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/walnut-kunafa.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Kunafa'">
+                <div class="item-details">
+                    <div class="item-name-ar">كنافة بالجوز</div>
+                    <div class="item-name-en">Premium Walnut Kunafa</div>
+                    <div class="item-desc-ar">طبقة مقرمشة من الكنافة الذهبية محشوة بخلطة الجوز الفاخر ولمسة خفيفة ودافئة من القرفة.</div>
+                    <div class="item-desc-en">Crispy golden pastry filled with a premium crushed walnut mix and a subtle hint of cinnamon.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (سمن)، غلوتين (قمح)، مكسرات (جوز).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Ghee), Gluten (Wheat), Nuts (Walnut).</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -330,198 +907,349 @@
         <h2 class="section-title">☁️ أنواع القشطة Sweets with Cream</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£7.00</span>
-                <img src="Halawet el-Jibn.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Cream'">
+                <span class="item-price">£4.00 <small style="font-size: 12px; font-weight: 400;">(4 Pcs)</small></span>
+                <img src="imagesnamura.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Namura'">
                 <div class="item-details">
-                    <div class="item-name-ar">حلاوة الجبن الفاخرة</div>
-                    <div class="item-name-en">Premium Cheese Halawet el-Jibn</div>
-                    <div class="item-desc-ar">استمتع بالمذاق الأسطوري لفائف عجينة الجبن الناعمة، المحشوة بالقشطة الطازجة والمزينة بالفستق الحلبي الفاخر. تحفة فنية من المطبخ السوري تذوب في الفم لتمنحك تجربة أصيلة لا تُنسى.
-
-3. مسببات الحساسية (Allergens)</div>
-                    <div class="item-desc-en">Indulge in the legendary taste of our soft cheese dough rolls, delicately filled with fresh, velvety cream and topped with aromatic pistachios. A true Syrian masterpiece that melts in your mouth.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">نمورة بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Namura</div>
+                    <div class="item-desc-ar">٤ قطع من النمورة الذهبية المخبوزة بالسمن الأصيل، محشوة بالقشطة الفاخرة لتذوب في الفم.</div>
+                    <div class="item-desc-en">4 pieces of golden, buttery Namura baked to perfection and filled with melting fresh cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: يحتوي على الألبان (حليب/جبن) والمكسرات (الفستق). يُحضّر في منشأة تتعامل مع الجلوتين..<br>
-                        <span style="color:#ffc107;">Contains:Contains Dairy (Milk/Cheese) and Nuts (Pistachios). Prepared in a facility that handles gluten.</span>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat).</span>
                     </div>
                 </div>
             </div>
-<div class="item-card">
-    <span class="item-price">£4.00</span>
-    <img src="Halawet el-Jibn" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">نمورة (بقلاوة) بالقشطة الفاخرة</div>
-        <div class="item-name-en">"Premium Cream Baklawa "Namoura
 
-</div>
-        <div class="item-desc-ar">مزيج ساحر بين طبقات الرقائق الهشة المخبوزة بالسمن وقلب غني بالقشطة المخملية الفاخرة. تذوق أصالة التقاليد الشرقية في كل قطعة من النمورة الذهبية.</div>
-        <div class="item-desc-en">A heavenly fusion of delicate, buttery filo layers and a rich, velvety cream center. Experience the authentic taste of tradition in every bite of our golden Namoura.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: الجلوتين (القمح) والألبان (الحليب/السمن). يُحضّر في منشأة تتعامل مع المكسرات.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat) and Dairy (Milk/Ghee). Prepared in a facility that handles nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">مبرومة بالقشطة والفستق الفاخرة</div>
-        <div class="item-name-en">Premium Cream and Pistachio Mabrouma</div>
-        <div class="item-desc-ar">استمتع بتجربة ملكية مع خيوط المبرومة الذهبية المقرمشة، الملفوفة يدوياً بعناية والمحشوة بالقشطة الغنية والفستق الحلبي الفاخر. تحلية فاخرة تليق بكل مناسباتكم.</div>
-        <div class="item-desc-en">Experience the ultimate indulgence with our golden, crispy Mabrouma strands, meticulously hand-rolled and filled with rich cream and premium pistachios. A royal treat for every occasion.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: حتوي على الألبان (الحليب/السمن)، المكسرات (الفستق)، والجلوتين (القمح). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
-            <span style="color:#ffc107;">Contains: Contains Dairy (Milk/Ghee), Nuts (Pistachios), and Gluten (Wheat). Prepared in a facility that handles other nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
+            <div class="item-card">
+                <span class="item-price">£4.00 <small style="font-size: 12px; font-weight: 400;">(4 Pcs)</small></span>
+                <img src="images/mabrouma-cream.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Mabrouma'">
+                <div class="item-details">
+                    <div class="item-name-ar">مغشوشة (برمة بالقشطة)</div>
+                    <div class="item-name-en">Premium Cream Mabrouma</div>
+                    <div class="item-desc-ar">٤ قطع من خيوط المبرومة المقرمشة، ملفوفة بأناقة حول قلب غني من القشطة الطازجة.</div>
+                    <div class="item-desc-en">4 pieces of exquisitely crispy Mabrouma, elegantly rolled around a rich heart of fresh cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
 
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">وربات بالقشطة الفاخرة</div>
-        <div class="item-name-en">Premium Cream Triangle Warbat</div>
-        <div class="item-desc-ar">تذوق سحر القرمشة مع مثلثات الوربات الذهبية. طبقات من رقائق الفيلو الهشة والمطوية ببراعة، تحتضن قلباً نابضاً بالقشطة الطازجة الغنية. تباين مذهل بين الهشاشة الخيالية والنعومة المخملية التي تذوب في الفم.</div>
-        <div class="item-desc-en">Savor the delicate crunch of our signature triangular Warbat. Expertly folded layers of golden filo pastry gently envelope a luscious, fresh cream filling. A striking contrast of crispy textures and a smooth, melt-in-your-mouth center.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: على الجلوتين (القمح) والألبان (الحليب/السمن). يُحضّر في منشأة تتعامل مع المكسرات.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat) and Dairy (Milk/Ghee). Prepared in a facility that handles nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">مدلوقة بالقشطة الفاخرة</div>
-        <div class="item-name-en">Premium Cream Madlouka</div>
-        <div class="item-desc-ar">دلل حواسك بطبقة غنية من عجينة السميد المحمصة والمشبعة بالقطر، تعلوها طبقة سخية من القشطة الطازجة والمزينة بالمكسرات. تجربة شرقية أصيلة تجمع بين القوام الناعم والحلاوة المتوازنة التي تذوب في الفم.</div>
-        <div class="item-desc-en">Treat yourself to a luscious base of roasted, syrup-soaked semolina dough, lavishly crowned with fresh, velvety cream and a sprinkle of nuts. An authentic Middle Eastern delight offering a perfect harmony of soft textures and balanced sweetness.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: الجلوتين (السميد/القمح)، الألبان (الحليب/السمن)، والمكسرات (الفستق/اللوز). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Semolina/Wheat), Dairy (Milk/Ghee), and Nuts (Pistachios/Almonds). Prepared in a facility that handles other nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">مفروكة بالقشطة الفاخرة</div>
-        <div class="item-name-en">Premium Cream Mafroukeh</div>
-        <div class="item-desc-ar">اكتشف النكهات العميقة والأصيلة للمفروكة الفاخرة. قاعدة غنية باللون الأخضر الداكن من السميد المحمص والمفروك بعناية مع الفستق الحلبي، تتوجها طبقة سخية من القشطة الطازجة والمخملية. رحلة حسية استثنائية في كل قضمة.</div>
-        <div class="item-desc-en">Discover the deep, earthy flavors of our signature Mafroukeh. A rich, dark green base of roasted semolina meticulously rubbed with premium pistachios, beautifully crowned with a generous layer of fresh, velvety cream. An exquisite sensory journey in every bite.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: يحتوي على الجلوتين (السميد/القمح)، الألبان (الحليب/السمن)، والمكسرات (الفستق). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Semolina/Wheat), Dairy (Milk/Ghee), and Nuts (Pistachios). Prepared in a facility that handles other nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">قطايف بالقشطة الفاخرة</div>
-        <div class="item-name-en">Premium Cream Qatayef</div>
-        <div class="item-desc-ar">تلذذ بقطعة من الأصالة مع القطايف الذهبية الطرية، المطوية بعناية والمحشوة بسخاء بالقشطة الطازجة والمخملية. لمسة أخيرة من الفستق الحلبي المجروش لتكمل لوحة فنية من المذاق الشرقي الذي يزين أوقاتك.
+            <div class="item-card">
+                <span class="item-price">£4.00 <small style="font-size: 12px; font-weight: 400;">(4 Pcs)</small></span>
+                <img src="images/halawet-el-jibn.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Halawet+El+Jibn'">
+                <div class="item-details">
+                    <div class="item-name-ar">حلاوة الجبن بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Halawet El Jibn</div>
+                    <div class="item-desc-ar">٤ قطع من لفائف الجبن المخملية الناعمة، تتوجها حشوة القشطة الطازجة ورشة من الفستق الحلبي.</div>
+                    <div class="item-desc-en">4 pieces of legendary soft cheese rolls, delicately filled with fresh cream and sprinkled with pistachios.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (جبن، قشطة)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Cheese, Cream), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
 
-3. مسببات الحساسية (Allergens)</div>
-        <div class="item-desc-en">Elevate your dessert experience with our authentic Middle Eastern folded pancakes. Soft, golden dough generously stuffed with velvety fresh cream and exquisitely garnished with crushed pistachios. A bite-sized delight that captures the true essence of tradition.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: يحتوي على الجلوتين (القمح)، الألبان (الحليب)، والمكسرات (الفستق). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat), Dairy (Milk), and Nuts (Pistachios). Prepared in a facility that handles other nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
+            <div class="item-card">
+                <span class="item-price">£3.00 <small style="font-size: 12px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/ghraybeh.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Ghraybeh'">
+                <div class="item-details">
+                    <div class="item-name-ar">غريبة بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Ghraybeh</div>
+                    <div class="item-desc-ar">قطعة من الغريبة الهشة التي تذوب رقةً، معانقةً حشوة غنية من القشطة الفاخرة.</div>
+                    <div class="item-desc-en">A delicate, melt-in-your-mouth shortbread seamlessly embracing a rich fresh cream filling.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب (سمن، قشطة)، غلوتين (قمح)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Ghee, Cream), Gluten (Wheat), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00 <small style="font-size: 12px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/warbat.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Warbat'">
+                <div class="item-details">
+                    <div class="item-name-ar">وربات بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Warbat</div>
+                    <div class="item-desc-ar">مثلث ذهبي من رقائق العجين الهشة والمقرمشة، يخفي بداخله قلباً نابضاً بالقشطة الطازجة.</div>
+                    <div class="item-desc-en">A golden triangle of impossibly flaky pastry, concealing a luscious heart of fresh cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00 <small style="font-size: 12px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/wardat.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Wardat'">
+                <div class="item-details">
+                    <div class="item-name-ar">وردات بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Wardat</div>
+                    <div class="item-desc-ar">تحفة فنية على شكل وردة من الرقائق المقرمشة، تحتضن بسخاء القشطة وتزين بالمكسرات.</div>
+                    <div class="item-desc-en">A masterful pastry rose of crispy layers, generously holding premium cream and finished with fine nuts.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£2.00 <small style="font-size: 12px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/qatayef-walnut.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Qatayef'">
+                <div class="item-details">
+                    <div class="item-name-ar">قطايف بالجوز</div>
+                    <div class="item-name-en">Premium Walnut Qatayef</div>
+                    <div class="item-desc-ar">حبة قطايف ذهبية مقرمشة، مطوية بحب على خلطة غنية من الجوز الفاخر ولمسة قرفة دافئة.</div>
+                    <div class="item-desc-en">A golden, crispy folded pancake, lovingly stuffed with a rich, spiced premium walnut blend.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، مكسرات (جوز)، حليب (سمن).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Nuts (Walnut), Milk (Ghee).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.50 <small style="font-size: 12px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/taj-nuts.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Taj+El+Malek'">
+                <div class="item-details">
+                    <div class="item-name-ar">تاج الملك بالمكسرات</div>
+                    <div class="item-name-en">Premium Nuts Taj El Malek Kunafa</div>
+                    <div class="item-desc-ar">عش ذهبي من الكنافة الفاخرة والمقرمشة، مرصع بتشكيلة ملكية من المكسرات المحمصة.</div>
+                    <div class="item-desc-en">A luxurious golden nest of crispy Kunafa, royally studded with an assortment of roasted premium nuts.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، مكسرات (كاجو، فستق، لوز)، حليب (سمن).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Nuts (Cashew, Pistachio, Almond), Milk (Ghee).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00 <small style="font-size: 12px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/taj-cream.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Taj+El+Malek'">
+                <div class="item-details">
+                    <div class="item-name-ar">تاج الملك بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Taj El Malek Kunafa</div>
+                    <div class="item-desc-ar">عش مقرمش من الكنافة الملكية، يتوسطه قلب غني وناعم من القشطة الطازجة التي تذوب في الفم.</div>
+                    <div class="item-desc-en">A crispy, royal Kunafa nest cradling a smooth, melt-in-your-mouth heart of fresh cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (قشطة، سمن)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Cream, Ghee), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00 <small style="font-size: 12px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/wardat-kunafa.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Wardat'">
+                <div class="item-details">
+                    <div class="item-name-ar">وردات كنافة بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Kunafa Wardat</div>
+                    <div class="item-desc-ar">زهرة أنيقة من خيوط الكنافة المحمصة، محشوة بترف بالقشطة الطازجة ومزينة بلمسة فستق.</div>
+                    <div class="item-desc-en">An elegant flower crafted from roasted Kunafa threads, lavishly filled with fresh cream and a touch of pistachio.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (قشطة، سمن)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Cream, Ghee), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£2.00 <small style="font-size: 12px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/qatayef-cream.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Qatayef'">
+                <div class="item-details">
+                    <div class="item-name-ar">قطايف بالقشطة</div>
+                    <div class="item-name-en">Premium Cream Qatayef</div>
+                    <div class="item-desc-ar">قطعة قطايف ذهبية طرية، محشوة بسخاء بالقشطة المخملية ومزينة بالفستق الحلبي الفاخر.</div>
+                    <div class="item-desc-en">A soft, golden folded pancake, generously piped with velvety cream and garnished with crushed pistachios.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (قشطة)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Cream), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">قطايف بالجوز الفاخرة</div>
-        <div class="item-name-en">Premium Walnut Qatayef</div>
-        <div class="item-desc-ar">انغمس في نكهات الدفء والأصالة مع حبات القطايف الذهبية المقرمشة. مطوية بإحكام ومحشوة بسخاء بخلطة غنية من الجوز الفاخر ولمسة ساحرة من القرفة. حلوى تقليدية تبعث على السعادة وتمنحك قرمشة لا تُنسى مع كل قضمة.</div>
-        <div class="item-desc-en">Immerse yourself in the comforting flavors of our golden, crispy Qatayef. Perfectly sealed and generously filled with a warm, spiced mixture of premium walnuts and a hint of cinnamon. A heart-warming traditional treat that promises the perfect crunch in every bite.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: الجلوتين (القمح) والمكسرات (الجوز). قد يحتوي على آثار من الألبان (إذا قُليت بالسمن). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat) and Nuts (Walnuts). May contain traces of Dairy (if fried in ghee). Prepared in a facility that handles other nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">وردات بالقشطة الفاخرة</div>
-        <div class="item-name-en">Premium Cream Wardat</div>
-        <div class="item-desc-ar">زيّن مائدتك بحبات الوَردات الأنيقة. طبقتان من الرقائق الذهبية المخبوزة بعناية لتتخذ شكل زهرة فاتنة، تحتضنان قلباً غنياً من القشطة الطازجة، وتتوجها رشة رقيقة من الفستق الحلبي. لوحة فنية ساحرة تجمع بين القرمشة المثالية والنعومة المخملية.</div>
-        <div class="item-desc-en">Delight in our elegant, flower-shaped Wardat. Two perfectly baked, golden fluted pastry shells embracing a generous heart of rich, fresh cream, elegantly crowned with a delicate sprinkle of pistachios. A visually stunning harmony of crunch and creamy perfection.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: الجلوتين (القمح)، الألبان (الحليب/السمن)، والمكسرات (الفستق). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
-            <span style="color:#ffc107;">Contains: Contains Gluten (Wheat), Dairy (Milk/Ghee), and Nuts (Pistachios). Prepared in a facility that handles other nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">بببببببب</div>
-        <div class="item-name-en">bbbbbbbbbbbbbb</div>
-        <div class="item-desc-ar">بببببببببب</div>
-        <div class="item-desc-en">bbbbbbbbbbbbbbbb</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: بببببببببببب<br>
-            <span style="color:#ffc107;">Contains: bbbbbbbbbbbbbbb</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">بببببببب</div>
-        <div class="item-name-en">bbbbbbbbbbbbbb</div>
-        <div class="item-desc-ar">بببببببببب</div>
-        <div class="item-desc-en">bbbbbbbbbbbbbbbb</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: بببببببببببب<br>
-            <span style="color:#ffc107;">Contains: bbbbbbbbbbbbbbb</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
+
+    <div id="arabicsweets" class="menu-section">
+        <h2 class="section-title">🌙 حلويات عربية Arabic Sweets</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£10.00 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/baklava-icecream.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Baklava+Ice+Cream'">
+                <div class="item-details">
+                    <div class="item-name-ar">بقلاوة بالفستق مع البوظة العربية</div>
+                    <div class="item-name-en">Premium Pistachio Baklava with Arabic Ice Cream</div>
+                    <div class="item-desc-ar">تزاوج فاخر بين حرارة البقلاوة المقرمشة وبرودة البوظة العربية الأصيلة لتجربة تذوق استثنائية.</div>
+                    <div class="item-desc-en">A luxurious pairing of warm, crispy baklava and cold, authentic Arabic ice cream for an extraordinary experience.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00 <small style="font-size: 11px; font-weight: 400;">(100g)</small></span>
+                <img src="images/mixed-nuts-baklava.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Mixed+Baklava'">
+                <div class="item-details">
+                    <div class="item-name-ar">بقلاوة مشكلة بالمكسرات الفاخرة</div>
+                    <div class="item-name-en">Premium Mixed Nuts Baklava Assortment</div>
+                    <div class="item-desc-ar">تشكيلة مختارة من روائع البقلاوة الدمشقية، محشوة بأجود أنواع المكسرات المحمصة.</div>
+                    <div class="item-desc-en">A handpicked assortment of crispy Damascene baklava, filled with the finest roasted nuts.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (سمن)، مكسرات (كاجو، لوز، فستق، جوز).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Ghee), Nuts (Mixed).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£6.00 <small style="font-size: 11px; font-weight: 400;">(100g)</small></span>
+                <img src="images/pistachio-baklava-assortment.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Pistachio+Baklava'">
+                <div class="item-details">
+                    <div class="item-name-ar">بقلاوة مشكلة بالفستق الحلبي</div>
+                    <div class="item-name-en">Premium Pistachio Baklava Assortment</div>
+                    <div class="item-desc-ar">لمحبي الأصالة، تشكيلة ملكية غنية جداً بالفستق الحلبي الفاخر والسمن الحيواني.</div>
+                    <div class="item-desc-en">A royal selection of baklava heavily packed with premium pistachios and traditional ghee.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (سمن)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Ghee), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£7.00 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/large-pistachio-baklava.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Large+Baklava'">
+                <div class="item-details">
+                    <div class="item-name-ar">بقلاوة بالفستق (قطعة كبيرة)</div>
+                    <div class="item-name-en">Premium Pistachio Large Baklava</div>
+                    <div class="item-desc-ar">قطعة عملاقة من البقلاوة المقرمشة، مشبعة بالفستق الحلبي لأقصى درجات الاستمتاع.</div>
+                    <div class="item-desc-en">An exceptionally sized piece of crispy baklava, generously loaded with premium pistachios.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (سمن)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Ghee), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00 <small style="font-size: 11px; font-weight: 400;">(5 Pcs)</small></span>
+                <img src="images/almond-harisa.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Almond+Harisa'">
+                <div class="item-details">
+                    <div class="item-name-ar">هريسة باللوز</div>
+                    <div class="item-name-en">Premium Almond Harisa</div>
+                    <div class="item-desc-ar">٥ قطع من الهريسة الدمشقية الأصيلة، مرصعة باللوز المحمص ومشبّعة بالقطر الذهبي.</div>
+                    <div class="item-desc-en">5 pieces of authentic Damascene semolina Harisa, studded with roasted almonds and golden syrup.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (سميد)، حليب (سمن)، مكسرات (لوز).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Semolina), Milk (Ghee), Nuts (Almond).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00 <small style="font-size: 11px; font-weight: 400;">(4 Pcs)</small></span>
+                <img src="images/pistachio-harisa.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Pistachio+Harisa'">
+                <div class="item-details">
+                    <div class="item-name-ar">هريسة بالفستق</div>
+                    <div class="item-name-en">Premium Pistachio Harisa</div>
+                    <div class="item-desc-ar">٤ قطع من الهريسة الطرية المحشوة والمغطاة بطبقة غنية من الفستق الحلبي الفاخر.</div>
+                    <div class="item-desc-en">4 pieces of soft Harisa, deeply infused and topped with a rich layer of premium pistachios.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (سميد)، حليب (سمن)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Semolina), Milk (Ghee), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.00 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/taj-nuts.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Taj+Nuts'">
+                <div class="item-details">
+                    <div class="item-name-ar">تاج الملك بالمكسرات</div>
+                    <div class="item-name-en">Premium Nuts Taj El Malek Kunafa</div>
+                    <div class="item-desc-ar">عش مقرمش من الكنافة الملكية، مرصع بتشكيلة فاخرة من المكسرات المحمصة.</div>
+                    <div class="item-desc-en">A crispy royal Kunafa nest, royally studded with an assortment of roasted premium nuts.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (سمن)، مكسرات (كاجو، لوز، فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Ghee), Nuts (Mixed).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.00 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/warbat-pistachio.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Warbat'">
+                <div class="item-details">
+                    <div class="item-name-ar">وربات بالفستق</div>
+                    <div class="item-name-en">Premium Pistachio Warbat</div>
+                    <div class="item-desc-ar">مثلثات من رقائق العجين الهشة، تفيض بحشوة سخية من الفستق الحلبي الفاخر.</div>
+                    <div class="item-desc-en">Crispy triangles of layered pastry, overflowing with a generous premium pistachio filling.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (سمن)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Ghee), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.00 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/faisaliya-pistachio.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Faisaliya'">
+                <div class="item-details">
+                    <div class="item-name-ar">فيصلية بالفستق</div>
+                    <div class="item-name-en">Premium Pistachio Faisaliya</div>
+                    <div class="item-desc-ar">هرم ذهبي مقرمش من خيوط الكنافة المحمصة، يحتضن قلباً غنياً من الفستق الحلبي.</div>
+                    <div class="item-desc-en">A golden, crispy Kunafa pyramid embracing a vibrant heart of premium pistachios.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: غلوتين (قمح)، حليب (سمن)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Gluten (Wheat), Milk (Ghee), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -529,60 +1257,89 @@
         <h2 class="section-title">🍰 ملك كيك Milk Cake</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£6.00</span>
-                <img src="milkcake.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=MilkCake'">
+                <span class="item-price">£5.50 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/milk-cake.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Milk+Cake'">
                 <div class="item-details">
-                    <div class="item-name-ar">كيكة الزعفران</div>
-                    <div class="item-name-en">Saffron Milk Cake</div>
-                    <div class="item-desc-ar">كيكة الحليب بنكهة الزعفران الفاخرة.</div>
-                    <div class="item-desc-en">Rich sponge cake with saffron milk.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">ميلك كيك (كيكة الحليب)</div>
+                    <div class="item-name-en">Premium Classic Milk Cake</div>
+                    <div class="item-desc-ar">كيكة إسفنجية خفيفة مغمسة في مزيج الحليب الغني، تعلوها طبقة مخملية من الكريمة الناعمة.</div>
+                    <div class="item-desc-en">A light, airy sponge cake soaked in a rich milk blend, topped with a velvety layer of smooth cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: حليب، بيض، غلوتين.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Eggs, Gluten.</span>
+                        يحتوي هذا المنتج على: حليب، بيض، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Eggs, Gluten (Wheat).</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div id="baklava" class="menu-section">
-        <h2 class="section-title">🍪 بقلاوة Baklava</h2>
-        <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£10.00</span>
-                <img src="baklava.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Baklava'">
+                <span class="item-price">£5.50 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/cheesecake.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Cheesecake'">
                 <div class="item-details">
-                    <div class="item-name-ar">بقلاوة مشكلة</div>
-                    <div class="item-name-en">Mixed Baklava</div>
-                    <div class="item-desc-ar">تشكيلة فاخرة من الفستق الحلبي والجوز.</div>
-                    <div class="item-desc-en">Assortment of pistachio and walnut baklava.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">تشيز كيك فاخر</div>
+                    <div class="item-name-en">Premium Creamy Cheesecake</div>
+                    <div class="item-desc-ar">قاعدة مقرمشة من البسكويت الزبدي تعلوها طبقة غنية وكثيفة من الجبن الكريمي الفاخر.</div>
+                    <div class="item-desc-en">A buttery, crunchy biscuit base topped with a rich and dense layer of premium cream cheese.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: مكسرات، غلوتين، سمن حيواني.<br>
-                        <span style="color:#ffc107;">Contains: Nuts, Gluten, Clarified Butter.</span>
+                        يحتوي هذا المنتج على: حليب، غلوتين (قمح)، بيض.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Gluten (Wheat), Eggs.</span>
                     </div>
                 </div>
             </div>
-<div class="item-card">
-    <span class="item-price">£8.00</span>
-    <img src="image.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Kweider'">
-    <div class="item-details">
-        <div class="item-name-ar">وربات بالفستق الفاخرة</div>
-        <div class="item-name-en">Premium Pistachio Triangle "Warba"</div>
-        <div class="item-desc-ar">بببببببببب</div>
-        <div class="item-desc-en">Indulge in our exquisite, triangular Warbat. Layers of flaky, golden-brown filo pastry meticulously hand-crafted and generously bursting with a rich, coarsely chopped green pistachio filling. A masterpiece of crispy texture and aromatic nutty flavour.</div>
-        <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
-        <div class="allergy-content">
-            <strong>Allergy Information:</strong><br>
-            يحتوي هذا المنتج على: يحتوي على المكسرات (الفستق)، الجلوتين (القمح)، والألبان (السمن/الزبدة). يُحضّر في منشأة تتعامل مع مكسرات أخرى.<br>
-            <span style="color:#ffc107;">Contains: Contains Nuts (Pistachios), Gluten (Wheat), and Dairy (Ghee/Butter). Prepared in a facility that handles other nuts.</span><br>
-            <em>يرجى إعلام الموظف بأي حساسية شديدة قبل الطلب.</em>
-        </div>
-    </div>
-</div>
+
+            <div class="item-card">
+                <span class="item-price">£5.50 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/dubai-chocolate.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Dubai+Chocolate'">
+                <div class="item-details">
+                    <div class="item-name-ar">شوكولاتة دبي (فستق وكنافة)</div>
+                    <div class="item-name-en">Premium Pistachio Dubai Chocolate</div>
+                    <div class="item-desc-ar">شوكولاتة فاخر محشوة بمزيج مبتكر ومقرمش من الكنافة المحمصة وكريمة الفستق الحلبي.</div>
+                    <div class="item-desc-en">Decadent chocolate filled with an innovative crunchy blend of toasted Kunafa and pistachio cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، مكسرات (فستق)، غلوتين (قمح)، صويا.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Nuts (Pistachio), Gluten (Wheat), Soya.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.50 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/mahalapye.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Mahalapye'">
+                <div class="item-details">
+                    <div class="item-name-ar">مهلبية دمشقية كريمية</div>
+                    <div class="item-name-en">Premium Milk Mahalapye Pudding</div>
+                    <div class="item-desc-ar">بودينج الحليب التقليدي بقوام كريمي ناعم، معطر بماء الزهر الأصيل ومزين بالفستق.</div>
+                    <div class="item-desc-en">A smooth, traditional milk pudding scented with orange blossom and garnished with crushed pistachios.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.50 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/tiramisu.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Tiramisu'">
+                <div class="item-details">
+                    <div class="item-name-ar">تيراميسو إيطالي</div>
+                    <div class="item-name-en">Premium Coffee Tiramisu</div>
+                    <div class="item-desc-ar">طبقات من بسكويت "ليدي فينغر" المشبع بالقهوة الإيطالية، تتوسطها كريمة الماسكاربوني الغنية.</div>
+                    <div class="item-desc-en">Classic layers of coffee-soaked ladyfingers and a rich, velvety mascarpone cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، بيض، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Eggs, Gluten (Wheat).</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -590,34 +1347,35 @@
         <h2 class="section-title">🍦 بوظة Ice Cream</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£5.50</span>
-                <img src="icecream.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=IceCream'">
+                <span class="item-price">£4.00 <small style="font-size: 11px; font-weight: 400;">(1 Slice)</small></span>
+                <img src="images/cassata-roll.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Cassata+Roll'">
                 <div class="item-details">
-                    <div class="item-name-ar">بوظة عربي</div>
-                    <div class="item-name-en">Arabic Ice Cream</div>
-                    <div class="item-desc-ar">بوظة يدوية أصلية مغطاة بالفستق.</div>
-                    <div class="item-desc-en">Hand-pounded ice cream coated with pistachio.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">كاسيتا (رول كيك بالبوظة)</div>
+                    <div class="item-name-en">Premium Sponge Ice Cream Roll</div>
+                    <div class="item-desc-ar">طبقات رقيقة من الكيك الإسفنجي الهش، ملفوفة ببراعة حول قلب من البوظة الكريمية الغنية.</div>
+                    <div class="item-desc-en">Delicate layers of fluffy sponge cake, masterfully rolled around a rich, creamy ice cream heart.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: حليب، مكسرات.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Nuts.</span>
+                        يحتوي هذا المنتج على: حليب، بيض، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Eggs, Gluten (Wheat).</span>
                     </div>
                 </div>
             </div>
+
             <div class="item-card">
-                <span class="item-price">£8.50</span>
-                <img src="crepe-icecream.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Crepe'">
+                <span class="item-price">£5.50 <small style="font-size: 11px; font-weight: 400;">(1 Pc)</small></span>
+                <img src="images/arabic-icecream.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Arabic+Ice+Cream'">
                 <div class="item-details">
-                    <div class="item-name-ar">كريب بوظة</div>
-                    <div class="item-name-en">Ice Cream Crepe Pouch</div>
-                    <div class="item-desc-ar">كريب محشو بنوعين من البوظة الإيطالية ومغطى بشوكولاتة نوتيلا الغنية.</div>
-                    <div class="item-desc-en">Crepe stuffed with two types of Italian ice cream covered with nutella chocolate.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">بوظة عربي بالقشطة والفستق</div>
+                    <div class="item-name-en">Premium Cream Arabic Ice Cream</div>
+                    <div class="item-desc-ar">البوظة الدمشقية الأصيلة المدقوقة يدوياً، تمتاز بقوامها المطاطي الفريد وغناها بالقشطة والفستق الحلبي.</div>
+                    <div class="item-desc-en">Authentic hand-pounded Damascene ice cream, famous for its unique stretchy texture, fresh cream, and premium pistachios.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: حليب، مكسرات (فستق)، غلوتين، وصويا.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Nuts, Gluten, Soya.</span>
+                        يحتوي هذا المنتج على: حليب، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Nuts (Pistachio).</span>
                     </div>
                 </div>
             </div>
@@ -625,21 +1383,281 @@
     </div>
 
     <div id="cold" class="menu-section">
-        <h2 class="section-title">🍹 شراب بارد Cold Drinks</h2>
+        <h2 class="section-title">🍹 مشروبات باردة Cold Drinks</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£4.50</span>
-                <img src="cold.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Cold'">
+                <span class="item-price">£5.00</span>
+                <img src="images/pineapple-lemon.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Pineapple+Lemon'">
                 <div class="item-details">
-                    <div class="item-name-ar">ليمون بالنعناع</div>
-                    <div class="item-name-en">Mint Lemonade</div>
-                    <div class="item-desc-ar">عصير منعش طبيعي 100%.</div>
-                    <div class="item-desc-en">Freshly squeezed lemon with fresh mint.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">عصير أناناس وليمون</div>
+                    <div class="item-name-en">Premium Pineapple & Lemon Juice</div>
+                    <div class="item-desc-ar">مزيج استوائي منعش يجمع ببراعة بين حلاوة الأناناس الطبيعية وحموضة الليمون ليروي عطشك.</div>
+                    <div class="item-desc-en">A refreshing tropical blend masterfully combining the sweetness of pineapple with the tanginess of lemon.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
                         خالي من مسببات الحساسية الشائعة.<br>
-                        <span style="color:#ffc107;">Free from common allergens.</span>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/polo-mint.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Polo+Drink'">
+                <div class="item-details">
+                    <div class="item-name-ar">عصير بولو (ليمون بالنعناع)</div>
+                    <div class="item-name-en">Premium Mint Polo Lemonade</div>
+                    <div class="item-desc-ar">المشروب الكلاسيكي المنعش؛ عصير ليمون طازج ممزوج بأوراق النعناع الخضراء والثلج المبروش.</div>
+                    <div class="item-desc-en">The classic thirst-quencher; freshly squeezed lemon blended with cool mint leaves and crushed ice.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£6.00</span>
+                <img src="images/mixed-fruit.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Mixed+Fruit'">
+                <div class="item-details">
+                    <div class="item-name-ar">كوكتيل فواكه مشكلة</div>
+                    <div class="item-name-en">Premium Mixed Fruit Cocktail</div>
+                    <div class="item-desc-ar">توليفة غنية من الفواكه الطبيعية الطازجة، معصورة بعناية لتمنحك طاقة وحيوية في كل رشفة.</div>
+                    <div class="item-desc-en">A rich medley of fresh, natural fruits, carefully blended to give you a burst of energy in every sip.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/orange-juice.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Orange+Juice'">
+                <div class="item-details">
+                    <div class="item-name-ar">عصير برتقال طازج</div>
+                    <div class="item-name-en">Premium Fresh Orange Juice</div>
+                    <div class="item-desc-ar">عصير برتقال طبيعي ١٠٠٪، يُعصر يومياً ليقدم لك المذاق المنعش والفوائد الكاملة.</div>
+                    <div class="item-desc-en">100% natural orange juice, freshly squeezed daily to deliver ultimate refreshment and goodness.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/apple-juice.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Apple+Juice'">
+                <div class="item-details">
+                    <div class="item-name-ar">عصير تفاح طازج</div>
+                    <div class="item-name-en">Premium Fresh Apple Juice</div>
+                    <div class="item-desc-ar">قطرات نقية من التفاح الطازج، طعم حلو وطبيعي يرضي ذوقك الراقي ويعيد لك حيويتك.</div>
+                    <div class="item-desc-en">Pure drops of fresh apples, offering a naturally sweet and crisp taste to satisfy your refined palate.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/mango-juice.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Mango+Juice'">
+                <div class="item-details">
+                    <div class="item-name-ar">عصير مانجو طازج</div>
+                    <div class="item-name-en">Premium Fresh Mango Juice</div>
+                    <div class="item-desc-ar">عصير استوائي كثيف وغني، يحمل لك حلاوة الطبيعة المذهلة في كل رشفة.</div>
+                    <div class="item-desc-en">A thick, rich tropical juice bringing you the stunning pure sweetness of nature in every sip.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/pineapple-juice.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Pineapple+Juice'">
+                <div class="item-details">
+                    <div class="item-name-ar">عصير أناناس طازج</div>
+                    <div class="item-name-en">Premium Fresh Pineapple Juice</div>
+                    <div class="item-desc-ar">عصير طبيعي ومنعش، ينقلك بطعمه الاستوائي الفريد إلى عالم من الانتعاش الخالص.</div>
+                    <div class="item-desc-en">Refreshing, natural juice that transports you to a tropical paradise of pure flavor.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.00</span>
+                <img src="images/strawberry-juice.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Strawberry+Juice'">
+                <div class="item-details">
+                    <div class="item-name-ar">عصير فراولة طازج</div>
+                    <div class="item-name-en">Premium Fresh Strawberry Juice</div>
+                    <div class="item-desc-ar">عصير بلونه الأحمر الجذاب وطعمه الحلو الطبيعي، لذة الانتعاش الحقيقي.</div>
+                    <div class="item-desc-en">A vibrant red juice with a naturally sweet taste, offering a pure refreshing delight.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.00</span>
+                <img src="images/tamarind.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Tamarind'">
+                <div class="item-details">
+                    <div class="item-name-ar">عصير تمر هندي أصيل</div>
+                    <div class="item-name-en">Premium Authentic Tamarind</div>
+                    <div class="item-desc-ar">مشروب التمر الهندي الشامي الكلاسيكي، محضر بحرفية ليوازن بين الحلاوة والحموضة المنعشة.</div>
+                    <div class="item-desc-en">Classic Damascene tamarind drink, crafted to perfectly balance sweet and refreshing tart flavors.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.50</span>
+                <img src="images/jallab.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Jallab'">
+                <div class="item-details">
+                    <div class="item-name-ar">جلاب بالصنوبر والزبيب</div>
+                    <div class="item-name-en">Premium Jallab with Pine Nuts</div>
+                    <div class="item-desc-ar">مشروب الجلاب العريق بخلاصة التمر وماء الورد، مزين بحبات الصنوبر والزبيب الفاخرة.</div>
+                    <div class="item-desc-en">Traditional Jallab drink with dates and rose water, garnished with premium pine nuts and raisins.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: مكسرات (صنوبر).<br>
+                        <span style="color:var(--gold-primary);">Contains: Nuts (Pine Nuts).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.50</span>
+                <img src="images/mulberry.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Mulberry'">
+                <div class="item-details">
+                    <div class="item-name-ar">عصير توت شامي</div>
+                    <div class="item-name-en">Premium Damascene Mulberry Juice</div>
+                    <div class="item-desc-ar">خلاصة التوت الشامي الطبيعي، يروي العطش بلونه الداكن الجذاب ومذاقه الغني والفريد.</div>
+                    <div class="item-desc-en">Pure Damascene mulberry extract, quenching your thirst with its deep color and unique rich taste.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="soft-drinks" class="menu-section">
+        <h2 class="section-title">🥤 مشروبات غازية Soft Drinks</h2>
+        <div class="item-grid">
+            <div class="item-card">
+                <span class="item-price">£2.50</span>
+                <img src="images/still-water.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Still+Water'">
+                <div class="item-details">
+                    <div class="item-name-ar">مياه معدنية نقية</div>
+                    <div class="item-name-en">Premium Pure Still Water</div>
+                    <div class="item-desc-ar">مياه شرب نقية ومنعشة، الرفيق المثالي والمتوازن لكل وجبة.</div>
+                    <div class="item-desc-en">Crystal clear and refreshing water, the perfect balanced companion for every meal.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/sparkling-water.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Sparkling+Water'">
+                <div class="item-details">
+                    <div class="item-name-ar">مياه فوارة</div>
+                    <div class="item-name-en">Premium Bubbling Sparkling Water</div>
+                    <div class="item-desc-ar">مياه فوارة بفقاعات منعشة تمنحك شعوراً بالحيوية وتجدد نشاطك.</div>
+                    <div class="item-desc-en">Crisp sparkling water with refreshing bubbles to revitalize your senses and refresh your palate.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/cola.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Cola'">
+                <div class="item-details">
+                    <div class="item-name-ar">كولا</div>
+                    <div class="item-name-en">Premium Refreshing Cola</div>
+                    <div class="item-desc-ar">المشروب الكلاسيكي المنعش بنكهته الأصلية المميزة التي يعشقها الجميع.</div>
+                    <div class="item-desc-en">The iconic refreshing beverage with its distinctive original flavor loved by everyone.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/sprite.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Sprite'">
+                <div class="item-details">
+                    <div class="item-name-ar">سبرايت</div>
+                    <div class="item-name-en">Premium Lemon-Lime Sprite</div>
+                    <div class="item-desc-ar">مشروب غازي شفاف بنكهة الليمون واللايم الطبيعية، قمة في الانتعاش والخفة.</div>
+                    <div class="item-desc-en">A clear lemon and lime flavored sparkling drink, offering the peak of lightness and refreshment.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/cola-zero.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Cola+Zero'">
+                <div class="item-details">
+                    <div class="item-name-ar">كولا زيرو</div>
+                    <div class="item-name-en">Premium Sugar-Free Cola Zero</div>
+                    <div class="item-desc-ar">استمتع بنفس مذاق الكولا الرائع والمنعش ولكن بدون سكر أو سعرات حرارية.</div>
+                    <div class="item-desc-en">Enjoy the same great and refreshing cola taste but with zero sugar and zero calories.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
                     </div>
                 </div>
             </div>
@@ -647,21 +1665,310 @@
     </div>
 
     <div id="hot" class="menu-section">
-        <h2 class="section-title">☕ شراب ساخن Hot Drinks</h2>
+        <h2 class="section-title">☕ مشروبات ساخنة Hot Drinks</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£3.00</span>
-                <img src="hot.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Hot'">
+                <span class="item-price">£5.50</span>
+                <img src="images/blueberry-matcha.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Blueberry+Matcha'">
                 <div class="item-details">
-                    <div class="item-name-ar">شاي فاخر</div>
-                    <div class="item-name-en">Premium Tea</div>
-                    <div class="item-desc-ar">شاي محضر على الطريقة التقليدية.</div>
-                    <div class="item-desc-en">Traditional aromatic tea.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">ماتشا بالتوت الأزرق (حار/بارد)</div>
+                    <div class="item-name-en">Premium Blueberry Matcha</div>
+                    <div class="item-desc-ar">مزيج حيوي يجمع بين نكهة الماتشا العضوية وحلاوة التوت الأزرق الطبيعية.</div>
+                    <div class="item-desc-en">A vibrant fusion of organic matcha and sweet blueberries, elegantly served hot or over ice.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.50</span>
+                <img src="images/pistachio-matcha.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Pistachio+Matcha'">
+                <div class="item-details">
+                    <div class="item-name-ar">ماتشا بالفستق (حار/بارد)</div>
+                    <div class="item-name-en">Premium Pistachio Matcha</div>
+                    <div class="item-desc-ar">تناغم استثنائي بين الماتشا الترابية وكريمة الفستق الحلبي الغنية.</div>
+                    <div class="item-desc-en">An exceptional harmony of earthy matcha and rich pistachio cream perfectly blended.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.50</span>
+                <img src="images/strawberry-matcha.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Strawberry+Matcha'">
+                <div class="item-details">
+                    <div class="item-name-ar">ماتشا بالفراولة (حار/بارد)</div>
+                    <div class="item-name-en">Premium Strawberry Matcha</div>
+                    <div class="item-desc-ar">طبقات منعشة من الماتشا الخضراء وهريس الفراولة الطازجة لمذاق لا يقاوم.</div>
+                    <div class="item-desc-en">Refreshing layers of green matcha and fresh strawberry puree for an irresistible taste.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£5.50</span>
+                <img src="images/classic-matcha.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Classic+Matcha'">
+                <div class="item-details">
+                    <div class="item-name-ar">ماتشا (حار/بارد)</div>
+                    <div class="item-name-en">Premium Classic Matcha</div>
+                    <div class="item-desc-ar">شاي الماتشا الياباني الفاخر المحضر بعناية ليمنحك الانتعاش والطاقة.</div>
+                    <div class="item-desc-en">Premium Japanese matcha tea carefully prepared to grant you refreshing energy.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/arabic-coffee.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Arabic+Coffee'">
+                <div class="item-details">
+                    <div class="item-name-ar">قهوة عربية بالهيل</div>
+                    <div class="item-name-en">Premium Cardamom Arabic Coffee</div>
+                    <div class="item-desc-ar">قهوة دمشقية أصيلة مطحونة ومغلية مع حبات الهيل الفاخرة لرائحة تعانق الحواس.</div>
+                    <div class="item-desc-en">Authentic Damascene coffee, slowly brewed with premium cardamom pods for a sensory aroma.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
                         خالي من مسببات الحساسية الشائعة.<br>
-                        <span style="color:#ffc107;">Free from common allergens.</span>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/espresso.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Espresso'">
+                <div class="item-details">
+                    <div class="item-name-ar">إسبريسو غني</div>
+                    <div class="item-name-en">Premium Roasted Espresso</div>
+                    <div class="item-desc-ar">جرعة مركزة وغنية من القهوة النقية المحمصة بامتياز.</div>
+                    <div class="item-desc-en">A rich, intense shot of perfectly roasted pure coffee.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.50</span>
+                <img src="images/americano.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Americano'">
+                <div class="item-details">
+                    <div class="item-name-ar">أمريكانو كلاسيك</div>
+                    <div class="item-name-en">Premium Roasted Americano</div>
+                    <div class="item-desc-ar">إسبريسو غني مخفف بالماء الساخن لتجربة قهوة متوازنة وسلسة.</div>
+                    <div class="item-desc-en">Rich espresso lengthened with hot water for a smooth, balanced coffee experience.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.50</span>
+                <img src="images/flat-white.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Flat+White'">
+                <div class="item-details">
+                    <div class="item-name-ar">فلات وايت</div>
+                    <div class="item-name-en">Premium Milk Flat White</div>
+                    <div class="item-desc-ar">توازن مثالي بين جرعة الإسبريسو المزدوجة والحليب المبخر بقوام مخملي.</div>
+                    <div class="item-desc-en">A perfect balance of a double espresso shot and velvety micro-foamed milk.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.50</span>
+                <img src="images/latte.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Latte'">
+                <div class="item-details">
+                    <div class="item-name-ar">لاتيه فاخر</div>
+                    <div class="item-name-en">Premium Milk Latte</div>
+                    <div class="item-desc-ar">جرعة إسبريسو ممزوجة بسخاء مع الحليب المبخر الدافئ لمتعة ناعمة.</div>
+                    <div class="item-desc-en">An espresso shot generously blended with warm steamed milk for a smooth delight.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.50</span>
+                <img src="images/cappuccino.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Cappuccino'">
+                <div class="item-details">
+                    <div class="item-name-ar">كابوتشينو كلاسيك</div>
+                    <div class="item-name-en">Premium Milk Cappuccino</div>
+                    <div class="item-desc-ar">الانسجام التام بين القهوة، الحليب الساخن، وطبقة سميكة من الرغوة الغنية.</div>
+                    <div class="item-desc-en">The perfect harmony of coffee, hot milk, and a thick layer of rich milk foam.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.50</span>
+                <img src="images/macchiato.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Macchiato'">
+                <div class="item-details">
+                    <div class="item-name-ar">ماكياتو</div>
+                    <div class="item-name-en">Premium Milk Macchiato</div>
+                    <div class="item-desc-ar">جرعة إسبريسو مكثفة "ملطخة" بلمسة رقيقة من رغوة الحليب الدافئة.</div>
+                    <div class="item-desc-en">An intense espresso shot elegantly "stained" with a delicate dollop of warm milk foam.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£4.50</span>
+                <img src="images/cortado.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Cortado'">
+                <div class="item-details">
+                    <div class="item-name-ar">كورتادو</div>
+                    <div class="item-name-en">Premium Milk Cortado</div>
+                    <div class="item-desc-ar">مزيج متساوٍ تماماً من الإسبريسو القوي والحليب المبخر لتقليل الحموضة.</div>
+                    <div class="item-desc-en">A perfectly equal blend of bold espresso and steamed milk to reduce acidity.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/black-tea.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Black+Tea'">
+                <div class="item-details">
+                    <div class="item-name-ar">شاي أسود كلاسيك</div>
+                    <div class="item-name-en">Premium Classic Black Tea</div>
+                    <div class="item-desc-ar">كوب من الشاي الأسود الفاخر، محضر بعناية ليمنحك الدفء والمزاج المعتدل.</div>
+                    <div class="item-desc-en">A comforting, robust cup of carefully selected black tea leaves for a perfect mood.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/green-tea.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Green+Tea'">
+                <div class="item-details">
+                    <div class="item-name-ar">شاي أخضر نقي</div>
+                    <div class="item-name-en">Premium Classic Green Tea</div>
+                    <div class="item-desc-ar">شاي أخضر طبيعي غني بمضادات الأكسدة، خفيف ومنعش بعد الوجبات.</div>
+                    <div class="item-desc-en">Natural green tea rich in antioxidants, light and incredibly refreshing after meals.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/mint-tea.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Mint+Tea'">
+                <div class="item-details">
+                    <div class="item-name-ar">شاي بالنعناع الطازج</div>
+                    <div class="item-name-en">Premium Fresh Mint Tea</div>
+                    <div class="item-desc-ar">مشروب هادئ وعطري محضر من أوراق النعناع الخضراء الطازجة لتجربة مريحة للأعصاب.</div>
+                    <div class="item-desc-en">A soothing, aromatic beverage brewed with fresh green mint leaves for a calming experience.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/karak-tea.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Karak+Tea'">
+                <div class="item-details">
+                    <div class="item-name-ar">شاي كرك متبل</div>
+                    <div class="item-name-en">Premium Spiced Karak Tea</div>
+                    <div class="item-desc-ar">شاي غني مطبوخ ببطء مع الحليب ومزيج من البهارات العطرية الدافئة.</div>
+                    <div class="item-desc-en">A rich, sweet tea slowly brewed with milk and a blend of warm aromatic spices.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/berry-tea.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Berry+Tea'">
+                <div class="item-details">
+                    <div class="item-name-ar">شاي التوت المشكل</div>
+                    <div class="item-name-en">Premium Mixed Berry Tea</div>
+                    <div class="item-desc-ar">مشروب حيوي يجمع بين دفء الشاي ونكهة التوت البري الفاكهية اللاذعة.</div>
+                    <div class="item-desc-en">A vibrant infusion combining the warmth of tea with the tart, fruity flavors of wild berries.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£3.00</span>
+                <img src="images/iced-tea.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Iced+Tea'">
+                <div class="item-details">
+                    <div class="item-name-ar">شاي مثلج (آيس تي)</div>
+                    <div class="item-name-en">Premium Classic Iced Tea</div>
+                    <div class="item-desc-ar">شاي بارد منعش يقدم فوق مكعبات الثلج، الخيار الأمثل لتبريد حواسك.</div>
+                    <div class="item-desc-en">Crisp, cold, and immensely refreshing classic tea served over ice to cool your senses.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        خالي من مسببات الحساسية الشائعة.<br>
+                        <span style="color:var(--gold-primary);">Free from common allergens.</span>
                     </div>
                 </div>
             </div>
@@ -672,18 +1979,18 @@
         <h2 class="section-title">🍉 سلطة فواكه Fruit Salad</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£7.00</span>
-                <img src="fruit.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Fruit'">
+                <span class="item-price">£7.50</span>
+                <img src="images/fruit-salad.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Fruit+Salad'">
                 <div class="item-details">
-                    <div class="item-name-ar">سلطة فواكه موسمية</div>
-                    <div class="item-name-en">Seasonal Fruit Salad</div>
-                    <div class="item-desc-ar">فواكه طازجة مع الكريمة والعسل.</div>
-                    <div class="item-desc-en">Fresh fruits with cream and honey.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ إذا كنت تعاني من حساسية اضغط هنا</button>
+                    <div class="item-name-ar">سلطة فواكه ملكية</div>
+                    <div class="item-name-en">Premium Royal Fruit Salad</div>
+                    <div class="item-desc-ar">تشكيلة غنية من الفواكه الموسمية الطازجة، تتوجها طبقة سخية من القشطة الطبيعية ورشة مكسرات فاخرة.</div>
+                    <div class="item-desc-en">A rich medley of fresh seasonal fruits, generously crowned with natural cream and a sprinkle of premium nuts.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: حليب (في الكريمة).<br>
-                        <span style="color:#ffc107;">Contains: Milk (in cream).</span>
+                        يحتوي هذا المنتج على: حليب (قشطة)، مكسرات.<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk (Cream), Nuts.</span>
                     </div>
                 </div>
             </div>
@@ -691,21 +1998,55 @@
     </div>
 
     <div id="western" class="menu-section">
-        <h2 class="section-title">🥞 اكلات غربية Western Sweets</h2>
+        <h2 class="section-title">🥞 أكلات غربية Western Sweets</h2>
         <div class="item-grid">
             <div class="item-card">
-                <span class="item-price">£00.00</span>
-                <img src="crepe.jpg" class="item-image" onerror="this.src='https://via.placeholder.com/300x220/333/D4AF37?text=Crepe'">
+                <span class="item-price">£6.50</span>
+                <img src="images/chocolate-crepe.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Crepe'">
                 <div class="item-details">
-                    <div class="item-name-ar">كريب</div>
-                    <div class="item-name-en">Crepe</div>
-                    <div class="item-desc-ar">كريب فرنسي أصيل محشو بألذ النكهات.</div>
-                    <div class="item-desc-en">Authentic French crepe filled with delicious flavors.</div>
-                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ للمزيد من المعلومات اضغط هنا</button>
+                    <div class="item-name-ar">كريب الشوكولاتة البلجيكية</div>
+                    <div class="item-name-en">Premium Belgian Chocolate Crepe</div>
+                    <div class="item-desc-ar">كريب فرنسي رقيق وطازج، محشو ومزين بسخاء بالشوكولاتة البلجيكية الفاخرة الذائبة.</div>
+                    <div class="item-desc-en">A delicate, freshly made French crepe, generously filled and drizzled with melting premium Belgian chocolate.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
                     <div class="allergy-content">
                         <strong>Allergy Information:</strong><br>
-                        يحتوي هذا المنتج على: حليب، بيض، غلوتين.<br>
-                        <span style="color:#ffc107;">Contains: Milk, Eggs, Gluten.</span>
+                        يحتوي هذا المنتج على: حليب، بيض، غلوتين (قمح)، صويا (بالشوكولاتة).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Eggs, Gluten (Wheat), Soya (in chocolate).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£6.50</span>
+                <img src="images/pistachio-waffle.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Waffle'">
+                <div class="item-details">
+                    <div class="item-name-ar">وافل الفستق الحلبي</div>
+                    <div class="item-name-en">Premium Pistachio Waffle</div>
+                    <div class="item-desc-ar">قطعة وافل ذهبية مقرمشة من الخارج وطرية من الداخل، مغطاة بكريمة الفستق الحلبي الغنية.</div>
+                    <div class="item-desc-en">A golden waffle, crispy on the outside and fluffy inside, lavishly smothered in rich pistachio cream.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، بيض، غلوتين (قمح)، مكسرات (فستق).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Eggs, Gluten (Wheat), Nuts (Pistachio).</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <span class="item-price">£6.00</span>
+                <img src="images/classic-pancakes.webp" class="item-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220/141414/C5A059?text=Pancakes'">
+                <div class="item-details">
+                    <div class="item-name-ar">بان كيك كلاسيك</div>
+                    <div class="item-name-en">Premium Classic Pancakes</div>
+                    <div class="item-desc-ar">طبقات من البان كيك الأمريكي الهش، تقدم دافئة مع شراب القيقب (الميبل) وقطعة زبدة.</div>
+                    <div class="item-desc-en">A stack of fluffy American pancakes, served warm with pure maple syrup and a dollop of butter.</div>
+                    <button class="allergy-btn" onclick="toggleAllergy(this)">⚠️ معلومات الحساسية | Allergy Info</button>
+                    <div class="allergy-content">
+                        <strong>Allergy Information:</strong><br>
+                        يحتوي هذا المنتج على: حليب، بيض، غلوتين (قمح).<br>
+                        <span style="color:var(--gold-primary);">Contains: Milk, Eggs, Gluten (Wheat).</span>
                     </div>
                 </div>
             </div>
@@ -720,7 +2061,7 @@
 </div>
 
 <footer>
-    <img src="logo.png" alt="Kweider Logo" class="footer-logo" onerror="this.src='https://via.placeholder.com/120/000000/D4AF37?text=KWEIDER'">
+    <img src="images/logo.webp" alt="Kweider Logo" class="footer-logo" onerror="this.src='https://via.placeholder.com/120/000000/C5A059?text=KWEIDER'">
     <div class="footer-title">Kweider Damascene Sweets</div>
     <div class="footer-text">📍 London, United Kingdom<br>Authentic Damascene Taste Since 1969</div>
     <div class="footer-text">🕒 Opening Hours: 11:00 AM - 10:00 PM</div>
@@ -753,35 +2094,37 @@
 
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('expandedImage');
-        const images = document.querySelectorAll('.item-image');
-
-        images.forEach(img => {
-            img.addEventListener('click', function(e) {
+        
+        document.body.addEventListener('click', function(e) {
+            if (e.target.classList.contains('item-image')) {
                 modal.classList.add('show-modal'); 
-                modalImg.src = this.src; 
-            });
+                modalImg.src = e.target.src; 
+            }
         });
-// ---------------------------------------------
-        // رادار الحساسية الذكي (يظلل الكلمات تلقائياً)
-        // ---------------------------------------------
+
         const allergens = [
-            // الكلمات بالعربية (أضفنا بعض المرادفات لضمان الدقة)
             'ألبان', 'البان', 'حليب', 'جبن', 'جبنة', 'قشطة', 'سمسم', 
             'مكسرات', 'فستق', 'كاجو', 'لوز', 'بندق', 'غلوتين', 'جلوتين', 'قمح', 'صويا', 'بيض',
-            // الكلمات بالإنجليزية (مع الجمع)
             'Dairy', 'Milk', 'Cheese', 'Cream', 'Sesame', 'Nuts', 'Tree Nuts', 
             'Pistachio', 'Pistachios', 'Cashew', 'Cashews', 'Almond', 'Almonds', 
             'Hazelnut', 'Hazelnuts', 'Gluten', 'Wheat', 'Soy', 'Soya', 'Egg', 'Eggs'
         ];
         
-        // تحويل القائمة إلى صيغة بحث برمجية
         const regex = new RegExp('(' + allergens.join('|') + ')', 'gi');
-        const allergyBoxes = document.querySelectorAll('.allergy-content');
         
-        // البحث والاستبدال في كل صناديق الحساسية
-        allergyBoxes.forEach(box => {
-            box.innerHTML = box.innerHTML.replace(regex, '<span class="allergen-word">$1</span>');
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length) {
+                    const newAllergyBoxes = document.querySelectorAll('.allergy-content:not(.processed)');
+                    newAllergyBoxes.forEach(box => {
+                        box.innerHTML = box.innerHTML.replace(regex, '<span class="allergen-word">$1</span>');
+                        box.classList.add('processed');
+                    });
+                }
+            });
         });
+
+        observer.observe(document.getElementById('main-menu'), { childList: true, subtree: true });
 
         modal.addEventListener('click', function() {
             modal.classList.remove('show-modal'); 
@@ -822,10 +2165,10 @@
         const content = btn.nextElementSibling; 
         if (content.style.display === "block") {
             content.style.display = "none";
-            btn.innerHTML = "⚠️ للمزيد من المعلومات اضغط هنا";
+            btn.innerHTML = "⚠️ معلومات الحساسية | Allergy Info";
         } else {
             content.style.display = "block";
-            btn.innerHTML = "❌ إغلاق المعلومات";
+            btn.innerHTML = "❌ إغلاق المعلومات | Close Info";
         }
     }
 </script>
