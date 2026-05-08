@@ -83,7 +83,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* تنسيق الأزرار المتجاورة (الشبكة) */
         .grid-row {
             display: flex;
             gap: 10px;
@@ -118,7 +117,6 @@
             background-color: rgba(197, 160, 89, 0.1);
         }
 
-        /* تنسيق الأزرار الطويلة */
         .link-btn-full {
             display: flex;
             align-items: center;
@@ -165,7 +163,20 @@
             margin-top: 15px;
             font-size: 11px;
             color: #777;
-            line-height: 1.6;
+            line-height: 1.8;
+        }
+
+        .footer-address {
+            display: block; 
+            font-size: 14px; 
+            color: #aaaaaa;
+            text-decoration: none;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-address:hover {
+            color: #C5A059; 
         }
     </style>
 </head>
@@ -176,13 +187,13 @@
     <img src="kweider2026.webp" alt="Baklava" class="profile-img">
     
     <div class="brand-title ar-font">قـويـدر للحلويات الدمشقية</div>
-    <div class="eid-offer ar-font">🎁 زورونا ...مفاجآت وعروض العيد بانتظاركم 🎁</div>
+    <div class="eid-offer ar-font">🎁 مفاجآت وعروض العيد بانتظاركم 🎁</div>
 
     <div class="subtitle en-font">Kweider Damascene Sweets</div>
     <div class="tagline en-font">Authentic Damascene Taste Since 1969</div>
 
-    <!-- الصف الأول: إنستغرام و فيسبوك -->
     <div class="grid-row">
+        <!-- لاحظ استخدام target="_blank" لفتح نافذة جديدة بأمان -->
         <a href="https://www.instagram.com/kweideruk" class="link-btn-half ar-font" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram"></i> إنستغرام
         </a>
@@ -191,7 +202,6 @@
         </a>
     </div>
 
-    <!-- الصف الثاني: تيك توك و خريطة جوجل -->
     <div class="grid-row">
         <a href="https://www.tiktok.com/@kweideruk" class="link-btn-half ar-font" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-tiktok"></i> تيك توك
@@ -201,18 +211,19 @@
         </a>
     </div>
 
-    <!-- زر الواتساب الطويل -->
     <a href="https://wa.me/447440444500" class="link-btn-full whatsapp-btn ar-font" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i> تواصل معنا عبر واتساب
     </a>
 
-    <!-- زر الموقع الإلكتروني الطويل في الأخير -->
+    <!-- الموقع الإلكتروني الرسمي www.kweidersweets.co.uk -->
     <a href="https://www.kweidersweets.co.uk" class="link-btn-full ar-font" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-globe"></i> تسوق عبر موقعنا الإلكتروني
     </a>
 
     <div class="footer-info en-font">
-        📍 London, 184-186 High Street, Acton, W3 9NH<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=184-186+High+Street,+Acton,+London,+W3+9NH" class="footer-address" target="_blank" rel="noopener noreferrer">
+            📍 London, 184-186 High Street, Acton, W3 9NH
+        </a>
         🕒 Opening Hours: 11:00 AM - 10:00 PM
     </div>
 </div>
