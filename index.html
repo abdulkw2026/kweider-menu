@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>روابط قـويـدر للحلويات الدمشقية | Kweider Sweets</title>
     
-    <!-- مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- استدعاء خط Cairo للغة الإنجليزية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* إعدادات الخلفية لتطابق المنيو (الأسود الفخم) */
         body {
             margin: 0;
             padding: 0;
@@ -24,89 +20,116 @@
             min-height: 100vh;
         }
         
-        /* تطبيق الخطوط المخصصة */
-        .ar-font {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .en-font {
-            font-family: 'Cairo', sans-serif;
-        }
+        .ar-font { font-family: Arial, Helvetica, sans-serif; }
+        .en-font { font-family: 'Cairo', sans-serif; }
 
         .container {
             width: 100%;
             max-width: 480px;
-            padding: 40px 20px;
+            padding: 20px 15px;
             text-align: center;
             box-sizing: border-box;
         }
 
-        /* الشعار العلوي */
         .top-logo {
-            max-width: 180px;
+            max-width: 150px;
             height: auto;
-            margin-bottom: 25px;
+            margin-bottom: 12px;
         }
 
-        /* إعدادات الدائرة لتظهر البقلاوة كاملة (contain) */
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 110px; 
+            height: 110px;
             border-radius: 50%;
-            object-fit: contain; /* هذا الأمر يمنع قص الصورة */
-            background-color: #000; /* خلفية سوداء لملء الفراغات إن وجدت */
-            margin-bottom: 15px;
-            border: 2px solid #C5A059; /* إطار ذهبي أنيق */
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.15); /* توهج ذهبي خفيف */
-            padding: 5px; /* مسافة لحماية أطراف الصورة */
+            object-fit: contain;
+            background-color: #000;
+            margin-bottom: 10px;
+            border: 2px solid #C5A059;
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.15);
+            padding: 3px;
         }
 
         .brand-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             color: #ffffff;
         }
 
-        /* جملة العيد بتصميم يطابق زر (Daily combos) في المنيو */
         .eid-offer {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             color: #ffffff;
-            margin: 15px auto 20px auto;
+            margin: 8px auto 15px auto;
             background-color: transparent;
-            padding: 12px 25px;
+            padding: 8px 20px;
             border-radius: 8px;
             border: 1px solid #C5A059;
             display: inline-block;
         }
 
         .subtitle {
-            font-size: 15px;
-            margin-bottom: 5px;
+            font-size: 14px;
+            margin-bottom: 3px;
             color: #cccccc;
             direction: ltr;
         }
 
         .tagline {
-            font-size: 13px;
+            font-size: 12px;
             color: #C5A059;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
             font-weight: bold;
             letter-spacing: 0.5px;
         }
 
-        /* تصميم الأزرار ليطابق أزرار المنيو (خلفية سوداء، إطار رمادي، شكل بيضوي) */
-        .link-btn {
+        /* تنسيق الأزرار المتجاورة (الشبكة) */
+        .grid-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .link-btn-half {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 5px;
+            background-color: transparent;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid #444;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .link-btn-half i {
+            font-size: 18px;
+            color: #C5A059;
+        }
+
+        .link-btn-half:hover {
+            border-color: #C5A059;
+            background-color: rgba(197, 160, 89, 0.1);
+        }
+
+        /* تنسيق الأزرار الطويلة */
+        .link-btn-full {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 16px;
-            margin-bottom: 15px;
+            padding: 14px;
+            margin-bottom: 10px;
             background-color: transparent;
             color: #ffffff;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 15px;
             border: 1px solid #444;
             border-radius: 30px;
             transition: all 0.3s ease;
@@ -114,79 +137,78 @@
             position: relative;
         }
 
-        .link-btn i {
+        .link-btn-full i {
             position: absolute;
             right: 25px;
-            font-size: 20px;
+            font-size: 18px;
             color: #C5A059;
         }
 
-        /* تأثير التمرير (Hover) */
-        .link-btn:hover {
+        .link-btn-full:hover {
             border-color: #C5A059;
             background-color: rgba(197, 160, 89, 0.1);
         }
 
-        /* زر الواتساب ليطابق زر "تواصل مع الإدارة" (أخضر وداكن) */
         .whatsapp-btn {
             border-color: #00b341;
             color: #00b341;
+            font-weight: bold;
         }
-        .whatsapp-btn i {
-            color: #00b341;
-        }
+        .whatsapp-btn i { color: #00b341; }
         .whatsapp-btn:hover {
             border-color: #00e653;
             color: #00e653;
             background-color: rgba(0, 179, 65, 0.1);
         }
-        .whatsapp-btn:hover i {
-            color: #00e653;
-        }
 
         .footer-info {
-            margin-top: 40px;
-            font-size: 12px;
+            margin-top: 15px;
+            font-size: 11px;
             color: #777;
-            line-height: 1.8;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- الشعار في الأعلى -->
     <img src="logo.webp" alt="Kweider Logo" class="top-logo">
-    
-    <!-- صورة البقلاوة -->
     <img src="kweider2026.webp" alt="Baklava" class="profile-img">
     
     <div class="brand-title ar-font">قـويـدر للحلويات الدمشقية</div>
-    
-    <!-- جملة العيد -->
-    <div class="eid-offer ar-font">🎁 مفاجآت وعروض العيد بانتظاركم 🎁</div>
+    <div class="eid-offer ar-font">🎁 زورونا ...مفاجآت وعروض العيد بانتظاركم 🎁</div>
 
     <div class="subtitle en-font">Kweider Damascene Sweets</div>
     <div class="tagline en-font">Authentic Damascene Taste Since 1969</div>
 
-    <!-- الروابط -->
-    <a href="https://www.instagram.com/kweideruk" class="link-btn ar-font" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-instagram"></i> تابعنا على إنستغرام
-    </a>
-    <a href="https://www.tiktok.com/@kweideruk" class="link-btn ar-font" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-tiktok"></i> تابعنا على تيك توك
-    </a>
-    <a href="https://www.facebook.com/KweiderUK" class="link-btn ar-font" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-facebook-f"></i> صفحتنا على فيسبوك
-    </a>
-    <a href="https://www.google.com/maps/search/?api=1&query=184-186+High+Street,+Acton,+London,+W3+9NH" class="link-btn ar-font" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-map-marker-alt"></i> موقعنا في لندن (أكتون)
-    </a>
-    <a href="https://www.kweidersweets.co.uk" class="link-btn ar-font" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-globe"></i> تسوق عبر موقعنا الإلكتروني
-    </a>
-    <a href="https://wa.me/447440444500" class="link-btn whatsapp-btn ar-font" target="_blank" rel="noopener noreferrer">
+    <!-- الصف الأول: إنستغرام و فيسبوك -->
+    <div class="grid-row">
+        <a href="https://www.instagram.com/kweideruk" class="link-btn-half ar-font" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i> إنستغرام
+        </a>
+        <a href="https://www.facebook.com/KweiderUK" class="link-btn-half ar-font" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i> فيسبوك
+        </a>
+    </div>
+
+    <!-- الصف الثاني: تيك توك و خريطة جوجل -->
+    <div class="grid-row">
+        <a href="https://www.tiktok.com/@kweideruk" class="link-btn-half ar-font" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-tiktok"></i> تيك توك
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=184-186+High+Street,+Acton,+London,+W3+9NH" class="link-btn-half ar-font" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-map-marker-alt"></i> الخريطة
+        </a>
+    </div>
+
+    <!-- زر الواتساب الطويل -->
+    <a href="https://wa.me/447440444500" class="link-btn-full whatsapp-btn ar-font" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i> تواصل معنا عبر واتساب
+    </a>
+
+    <!-- زر الموقع الإلكتروني الطويل في الأخير -->
+    <a href="https://www.kweidersweets.co.uk" class="link-btn-full ar-font" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-globe"></i> تسوق عبر موقعنا الإلكتروني
     </a>
 
     <div class="footer-info en-font">
